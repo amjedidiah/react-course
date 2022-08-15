@@ -8,6 +8,10 @@ const pages = [
         to: "/shop",
         children: "SHOP",
     },
+    {
+        to: "/login",
+        children: "LOGIN",
+    },
 ];
 
 export default function Navigation() {

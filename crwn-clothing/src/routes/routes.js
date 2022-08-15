@@ -1,8 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./auth/login/login";
 import Home from "./home/home";
 import Navigation from "./navigation/navigation";
 
-const routes = [{ element: <Home />, index: true }];
+export const routes = [
+    { element: <Home />, index: true },
+    { element: <Login />, path: "/login", children: "LOGIN" },
+];
 
 export default function AppRoutes() {
     return (
