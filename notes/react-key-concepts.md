@@ -11,6 +11,7 @@
 ### Component Architecture: Component
 
 - Functions or classes that receive attributes and based on the state display the correct content
+- Self contained piece of code that returns a UI
 
 ### Unidirectional(One-way) Data Flow: VDOM
 
@@ -25,3 +26,7 @@
 - Decide on components
 - Decide the state and where it lives
 - Decide what changes when the state changes
+
+## Resources
+
+- [ ] [Create React App Docs](https://create-react-app.dev/docs/getting-started/)
