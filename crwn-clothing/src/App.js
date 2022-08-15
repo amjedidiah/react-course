@@ -1,9 +1,7 @@
-import Categories from "./components/categories/categories";
+import AppRoutes from "./routes/routes";
 
 export default function App() {
   return (
-    <div className="App">
-      <Categories />
-    </div>
+    <AppRoutes />
   );
 }
