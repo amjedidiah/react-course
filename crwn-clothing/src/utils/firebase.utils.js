@@ -4,6 +4,7 @@ import {
   getAuth,
   signInWithRedirect,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -31,6 +32,7 @@ googleProvider.setCustomParameters({ prompt: "select_account" });
 
 export const auth = getAuth(app);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+export const createAuthUserWithEmailAndPassword = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
 // Database
 export const db = getFirestore();

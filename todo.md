@@ -9,5 +9,3 @@
 - [ ] [Firebase docs](https://firebase.google.com/docs/)
 
 ## Temp
-
-- Register form with:

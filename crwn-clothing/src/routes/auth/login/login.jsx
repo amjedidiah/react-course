@@ -5,6 +5,7 @@ import {
   createUserFromAuth,
   signInWithGoogleRedirect,
 } from "../../../utils/firebase.utils";
+import Register from "../register/register";
 
 export default function Login() {
   useEffect(() => {
@@ -27,6 +28,8 @@ export default function Login() {
     <div>
       Login
       <button onClick={signInWithGoogleRedirect}>Login with Google</button>
+
+      <Register />
     </div>
   );
 }
