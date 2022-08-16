@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "./navigation.scss"
-import { ReactComponent as CrwnLogo } from "../../assets/crown.svg"
+import "routes/components/navigation/navigation.scss"
+import { ReactComponent as CrwnLogo } from "assets/crown.svg"
 
 const pages = [
     {
@@ -9,7 +9,7 @@ const pages = [
         children: "SHOP",
     },
     {
-        to: "/login",
+        to: "/auth",
         children: "LOGIN",
     },
 ];

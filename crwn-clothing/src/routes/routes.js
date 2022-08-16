@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./auth/login/login";
-import Home from "./home/home";
-import Navigation from "./navigation/navigation";
+import Auth from "routes/components/auth/auth";
+import Home from "routes/components/home/home";
+import Navigation from "routes/components/navigation/navigation";
 
 export const routes = [
     { element: <Home />, index: true },
-    { element: <Login />, path: "/login", children: "LOGIN" },
+    { element: <Auth />, path: "/auth", children: "LOGIN" },
 ];
 
 export default function AppRoutes() {

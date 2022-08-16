@@ -1,5 +1,5 @@
 import Proptypes from "prop-types";
-import "./category.scss";
+import "components/categories/components/category/category.scss";
 
 export default function Category({ imageUrl, title }) {
     return (

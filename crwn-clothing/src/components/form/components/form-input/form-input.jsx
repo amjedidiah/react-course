@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import "./form-input.scss";
+import "components/form/components/form-input/form-input.scss";
 
 export default function FormInput({ id, label, ...otherProps }) {
   return (

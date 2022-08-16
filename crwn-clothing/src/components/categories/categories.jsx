@@ -1,6 +1,6 @@
-import categories from "./data/categories.json";
-import "./categories.scss";
-import Category from "./components/category/category";
+import categories from "components/categories/data/categories.json";
+import "components/categories/categories.scss";
+import Category from "components/categories/components/category/category";
 
 export default function Categories() {
     return (

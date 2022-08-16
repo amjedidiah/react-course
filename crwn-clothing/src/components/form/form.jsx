@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useCallback } from "react";
-import FormInput from "./components/form-input/form-input";
+import Button from "components/button/button";
+import FormInput from "components/form/components/form-input/form-input";
+import "components/form/form.scss";
 
 
-export default function Form({ formFields, onSubmit, formType }) {
+export default function Form({ formFields, buttons, onSubmit, formType }) {
   const [formValues, setFormValues] = useState({});
 
   const handleChange = useCallback(
@@ -34,20 +36,31 @@ export default function Form({ formFields, onSubmit, formType }) {
 
         return <FormInput key={id} {...completeField} />;
       })}
-      <button type="submit">Register</button>
+
+      <div className="buttons-container">
+        {buttons.map((button) => (
+          <Button key={button.value} {...button} />
+        ))}
+      </div>
     </form>
   );
 }
 
 Form.propTypes = {
-    formFields: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            label: PropTypes.string,
-            type: PropTypes.string.isRequired,
-            placeholder: PropTypes.string,
-        })
-    ).isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    formType: PropTypes.string.isRequired,
+  formFields: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string,
+      type: PropTypes.string.isRequired,
+      placeholder: PropTypes.string,
+    })
+  ).isRequired,
+  buttons: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      value: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  formType: PropTypes.string.isRequired,
 };
