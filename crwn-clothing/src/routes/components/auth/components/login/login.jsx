@@ -1,10 +1,10 @@
 import Form from "components/form/form";
+import { UserContext } from "context/user.context";
 import { getRedirectResult } from "firebase/auth";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import "routes/components/auth/auth.scss";
 import {
   auth,
-  createUserFromAuth,
   signInAuthWithEmailAndPassword,
   signInWithGoogleRedirect,
 } from "utils/firebase.utils";
@@ -39,21 +39,18 @@ const buttons = [
 ];
 
 export default function Login() {
+  const {setCurrentUser} = useContext(UserContext);
   useEffect(() => {
     async function handleGoogleUserLogin() {
       try {
-        const response = await getRedirectResult(auth);
-        if (response) {
-          const userDoc = await createUserFromAuth(response.user);
-          console.log("userDoc", userDoc);
-        }
+        await getRedirectResult(auth);
       } catch (err) {
         console.log("err", err);
       }
     }
 
     handleGoogleUserLogin();
-  }, []);
+  }, [setCurrentUser]);
 
   const handleLogin = async ({ email, password }, setFormValues) => {
     if (!(email && password)) {
@@ -61,9 +58,7 @@ export default function Login() {
     }
 
     try {
-      const { user } = await signInAuthWithEmailAndPassword(email, password);
-      console.log(user);
-
+      await signInAuthWithEmailAndPassword(email, password);
       setFormValues({});
     } catch (err) {
       switch (err.code) {

@@ -3,7 +3,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserFromAuth,
 } from "utils/firebase.utils";
-import "routes/components/auth/auth.scss"
+import "routes/components/auth/auth.scss";
 
 const formFields = [
   {
@@ -11,28 +11,28 @@ const formFields = [
     label: "Display Name",
     type: "text",
     placeholder: "e.g: John Doe",
-    required: true
+    required: true,
   },
   {
     name: "email",
     label: "Email",
     type: "email",
     placeholder: "e.g: john.doe@example.com",
-    required: true
+    required: true,
   },
   {
     name: "password",
     label: "Password",
     type: "password",
     placeholder: "Enter your password",
-    required: true
+    required: true,
   },
   {
     name: "confirmPassword",
     label: "Confirm Password",
     type: "password",
     placeholder: "Confirm your password",
-    required: true
+    required: true,
   },
 ];
 
@@ -40,8 +40,8 @@ const buttons = [
   {
     type: "submit",
     value: "Register",
-  }
-]
+  },
+];
 
 export default function Register() {
   const handleRegister = async (
@@ -57,15 +57,9 @@ export default function Register() {
         email,
         password
       );
-      const userDoc = await createUserFromAuth({
-        ...user,
-        displayName,
-      });
 
-      if (userDoc) {
-        console.log("userDoc", userDoc);
-        setFormValues({});
-      }
+      await createUserFromAuth({ ...user, displayName });
+      setFormValues({});
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         return alert("Email already in use");

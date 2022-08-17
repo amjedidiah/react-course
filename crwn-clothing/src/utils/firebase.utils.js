@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -32,9 +34,11 @@ const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
 
 export const auth = getAuth(app);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
-export const createAuthUserWithEmailAndPassword = (email, password) => createUserWithEmailAndPassword(auth, email, password);
-export const signInAuthWithEmailAndPassword = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const signInWithGoogleRedirect = async () => await signInWithRedirect(auth, googleProvider);
+export const createAuthUserWithEmailAndPassword = async (email, password) => await createUserWithEmailAndPassword(auth, email, password);
+export const signInAuthWithEmailAndPassword = async (email, password) => await signInWithEmailAndPassword(auth, email, password);
+export const signOutAuth = async () => await signOut(auth);
+export const onAppAuthStateChanged = async (callback) => await onAuthStateChanged(auth, callback);
 
 // Database
 export const db = getFirestore();
