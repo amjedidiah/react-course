@@ -4,11 +4,10 @@
   # Directory to change to before starting a build.
   # This is where we will look for package.json/.nvmrc/etc.
   # If not set, defaults to the root directory.
-  base = "crwn-clothing/"
-
-  publish = "build/"
-  command = "CI=npm run build"
-
+  
+  base = "/crwn-clothing"
+  publish = "/build"
+  command = "CI=npm build"
 
 [[redirects]]
   from = "/*"
