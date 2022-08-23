@@ -3,7 +3,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserFromAuth,
 } from "utils/firebase.utils";
-import "routes/components/auth/auth.scss";
+import styles from "routes/components/auth/auth.module.scss";
 
 const formFields = [
   {
@@ -69,7 +69,7 @@ export default function Register() {
   };
 
   return (
-    <div className="auth-child-container">
+    <div className={styles["auth-child-container"]}>
       <h2>Dont Have An Account?</h2>
       <span>Register with your email and password</span>
 

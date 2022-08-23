@@ -1,15 +1,23 @@
-import PropTypes from "prop-types"
-import "components/button/button.scss";
+import PropTypes from "prop-types";
+import styles from "components/button/button.module.scss";
+import classNames from "classnames";
 
 const BUTTON_TYPE_CLASSES = {
   google: "google-sign-in",
   inverted: "inverted",
 };
 
+const buttonTypeClass = (buttonType) =>
+  buttonType ? BUTTON_TYPE_CLASSES[buttonType] : "";
+
 export default function Button({ buttonType, ...otherProps }) {
+  const buttonTypeClassName = buttonTypeClass(buttonType);
   return (
     <input
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+      className={classNames(
+        styles["button-container"],
+        buttonTypeClassName
+      )}
       {...otherProps}
     />
   );
@@ -23,4 +31,4 @@ Button.propTypes = {
 
 Button.defaultProps = {
   type: "button",
-}
+};

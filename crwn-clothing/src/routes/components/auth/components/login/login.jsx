@@ -2,7 +2,7 @@ import Form from "components/form/form";
 import { UserContext } from "context/user.context";
 import { getRedirectResult } from "firebase/auth";
 import { useContext, useEffect } from "react";
-import "routes/components/auth/auth.scss";
+import styles from "routes/components/auth/auth.module.scss";
 import {
   auth,
   signInAuthWithEmailAndPassword,
@@ -51,7 +51,7 @@ export default function Login() {
 
     handleGoogleUserLogin();
   }, [setCurrentUser]);
-
+  
   const handleLogin = async ({ email, password }, setFormValues) => {
     if (!(email && password)) {
       return alert("Please fill in all fields");
@@ -74,7 +74,7 @@ export default function Login() {
   };
 
   return (
-    <div className="auth-child-container">
+    <div className={styles["auth-child-container"]}>
       <h2>Already Have An Account?</h2>
       <span>Login with your email and password</span>
 

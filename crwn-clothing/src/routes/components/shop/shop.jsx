@@ -1,6 +1,6 @@
 import { useContext, useMemo, useState } from "react";
 import { CategoryContext } from "context/category.context";
-import "routes/components/shop/shop.scss";
+import styles from "routes/components/shop/shop.module.scss";
 import CategoryPreview from "routes/components/shop/components/category-preview/category-preview";
 import { useParams } from "react-router-dom";
 
@@ -28,7 +28,7 @@ export default function Shop() {
   }
 
   return (
-    <div className="shop-container">
+    <div className={styles["shop-container"]}>
       {categoryKeys.map((title) => (
         <CategoryPreview
           key={title}

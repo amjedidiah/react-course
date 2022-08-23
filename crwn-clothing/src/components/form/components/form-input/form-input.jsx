@@ -1,16 +1,17 @@
-import PropTypes from 'prop-types';
-import "components/form/components/form-input/form-input.scss";
+import PropTypes from "prop-types";
+import styles from "components/form/components/form-input/form-input.module.scss";
+import classNames from "classnames";
 
 export default function FormInput({ id, label, ...otherProps }) {
   return (
-    <div className="group">
-      <input id={id} className="form-input" {...otherProps} />
+    <div className={styles.group}>
+      <input id={id} className={styles["form-input"]} {...otherProps} />
       {label && (
         <label
           htmlFor={id}
-          className={`form-input-label ${
-            otherProps.value.length ? "shrink" : ""
-          }`}
+          className={classNames(styles["form-input-label"], {
+            [styles.shrink]: otherProps.value.length,
+          })}
         >
           {label}
         </label>
@@ -20,14 +21,14 @@ export default function FormInput({ id, label, ...otherProps }) {
 }
 
 FormInput.propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    type: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
-    id: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string,
-}
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+};
 
 FormInput.defaultProps = {
   value: "",

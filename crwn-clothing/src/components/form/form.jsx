@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCallback } from "react";
 import Button from "components/button/button";
 import FormInput from "components/form/components/form-input/form-input";
-import "components/form/form.scss";
+import styles from "components/form/form.module.scss";
 
 
 export default function Form({ formFields, buttons, onSubmit, formType }) {
@@ -37,7 +37,7 @@ export default function Form({ formFields, buttons, onSubmit, formType }) {
         return <FormInput key={id} {...completeField} />;
       })}
 
-      <div className="buttons-container">
+      <div className={styles["buttons-container"]}>
         {buttons.map((button) => (
           <Button key={button.value} {...button} />
         ))}

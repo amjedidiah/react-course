@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useContext, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "components/navigation/navigation.scss";
+import styles from "components/navigation/navigation.module.scss";
 import { ReactComponent as CrwnLogo } from "assets/crown.svg";
 import { UserContext } from "context/user.context";
 import { signOutAuth } from "utils/firebase.utils";
@@ -11,7 +11,6 @@ const pages = [
   {
     to: "/shop",
     children: "SHOP",
-    className: "nav-link",
   },
 ];
 
@@ -27,28 +26,26 @@ export default function Navigation() {
       ? {
           children: "LOGOUT",
           onClick: handleLogout,
-          className: "nav-link",
         }
       : {
           to: "/auth",
           children: "LOGIN",
-          className: "nav-link",
         };
     return pages;
   }, [currentUser, handleLogout]);
 
   return (
     <Fragment>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
-          <CrwnLogo className="logo" />
+      <div className={styles.navigation}>
+        <Link className={styles["logo-container"]} to="/">
+          <CrwnLogo className={styles.logo} />
         </Link>
-        <div className="nav-links-container">
+        <div className={styles["nav-links-container"]}>
           {updatedPages.map((page, i) =>
             page.to ? (
-              <Link key={`page-${i}`} {...page} />
+              <Link className={styles['nav-link']} key={`page-${i}`} {...page} />
             ) : (
-              <span key={`span-${i}`} {...page} />
+              <span className={styles['nav-link']} key={`span-${i}`} {...page} />
             )
           )}
           <CartIcon />

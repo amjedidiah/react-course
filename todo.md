@@ -8,4 +8,10 @@
 
 - [ ] [Firebase docs](https://firebase.google.com/docs/)
 
+- [ ] [Readup React Context documentation](https://reactjs.org/docs/context.html)
+
+- [ ] [Readup React Hooks documentation](https://reactjs.org/docs/hooks-intro.html)
+
+- [ ] [Readup Styled Components documentation](https://styled-components.com/docs/basics)
+
 ## Temp
