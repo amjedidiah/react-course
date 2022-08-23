@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useMemo } from "react";
-import { ProductContext } from "context/product.context";
+import { CategoryContext } from "context/category.context";
 import { reverseObject } from "utils/array.util";
 
 export const CartContext = createContext({
@@ -17,10 +17,10 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { products } = useContext(ProductContext);
+  const { categoryMap } = useContext(CategoryContext);
 
-  const addToCart = (id) => {
-    const product = reverseObject(products).find(
+  const addToCart = (id, category) => {
+    const product = categoryMap[category].find(
       (product) => product.id === id
     );
     const productExists = cartItems[id];

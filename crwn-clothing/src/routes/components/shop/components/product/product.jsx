@@ -4,10 +4,10 @@ import Button from "components/button/button";
 import { CartContext } from "context/cart.context";
 import "routes/components/shop/components/product/product.scss";
 
-export default function Product({ name, price, imageUrl, id }) {
+export default function Product({ name, price, imageUrl, id, category }) {
   const { addToCart } = useContext(CartContext);
 
-  const addItemToCart = () => addToCart(id);
+  const addItemToCart = () => addToCart(id, category);
 
   return (
     <div className="product-card-container">
@@ -30,6 +30,7 @@ Product.propTypes = {
   price: PropTypes.number.isRequired,
   imageUrl: PropTypes.string,
   id: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 Product.defaultProps = {

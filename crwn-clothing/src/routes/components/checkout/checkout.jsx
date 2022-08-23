@@ -12,8 +12,8 @@ export default function Checkout() {
   return (
     <div className="checkout-container">
       <div className="checkout-header">
-        {headerBlocks.map((headerBlock) => (
-          <div className="header-block">
+        {headerBlocks.map((headerBlock, i) => (
+          <div className="header-block" key={`header-block-${i}`}>
             <span>{headerBlock}</span>
           </div>
         ))}

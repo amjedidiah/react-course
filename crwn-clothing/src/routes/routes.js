@@ -9,7 +9,7 @@ export const routes = [
   { element: <Home />, index: true },
   { element: <Auth />, path: "/auth" },
   { element: <Checkout />, path: "/checkout" },
-  { element: <Shop />, path: "/shop" },
+  { element: <Shop />, path: "/shop/*" },
 ];
 
 export default function AppRoutes() {
