@@ -7,7 +7,7 @@
   
   base = "crwn-clothing/"
   publish = "build/"
-  command = "cd crwn-clothing && CI=npm build"
+  command = "CI= npm build"
 
 [[redirects]]
   from = "/*"
