@@ -14,7 +14,6 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = () => onAppAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         createUserFromAuth(user);
       }

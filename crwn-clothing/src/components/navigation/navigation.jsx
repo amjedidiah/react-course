@@ -1,9 +1,11 @@
 import { Fragment, useCallback, useContext, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "routes/components/navigation/navigation.scss";
+import "components/navigation/navigation.scss";
 import { ReactComponent as CrwnLogo } from "assets/crown.svg";
 import { UserContext } from "context/user.context";
 import { signOutAuth } from "utils/firebase.utils";
+import CartIcon from "routes/components/shop/components/cart/components/cart-icon/cart-icon";
+import CartDropdown from "routes/components/shop/components/cart/components/cart-dropdown/cart-dropdown";
 
 const pages = [
   {
@@ -49,7 +51,9 @@ export default function Navigation() {
               <span key={`span-${i}`} {...page} />
             )
           )}
+          <CartIcon />
         </div>
+        <CartDropdown />
       </div>
       <Outlet />
     </Fragment>
