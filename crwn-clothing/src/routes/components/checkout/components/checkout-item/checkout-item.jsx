@@ -1,13 +1,13 @@
-import { CartContext } from "context/cart.context";
+import { CartContext } from "context/cart.reducer.context";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import styles from "routes/components/checkout/components/checkout-item/checkout-item.module.scss";
 
-export default function CheckoutItem({ id, name, imageUrl, price, quantity }) {
+export default function CheckoutItem({ id, name, imageUrl, price, quantity, category }) {
   const { removeFromCart, addToCart } = useContext(CartContext);
   const removeItemFromCart = () => removeFromCart(id);
   const removeItemsFromCart = () => removeFromCart(id, true);
-  const addItemToCart = () => addToCart(id);
+  const addItemToCart = () => addToCart(id, category);
 
   return (
     <div className={styles["checkout-item-container"]}>

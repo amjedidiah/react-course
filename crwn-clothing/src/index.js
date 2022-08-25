@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import "index.scss";
 import App from "App";
 import reportWebVitals from "reportWebVitals";
-import { UserProvider } from "context/user.context";
-import { CategoryProvider } from "context/category.context";
-import { CartProvider } from "context/cart.context";
+import { UserProvider } from "context/user.reducer.context";
+import { CategoryProvider } from "context/category.reducer.context";
+import { CartProvider } from "context/cart.reducer.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

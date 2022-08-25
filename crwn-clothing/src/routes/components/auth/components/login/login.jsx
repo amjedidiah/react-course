@@ -1,5 +1,5 @@
 import Form from "components/form/form";
-import { UserContext } from "context/user.context";
+import { UserContext } from "context/user.reducer.context";
 import { getRedirectResult } from "firebase/auth";
 import { useContext, useEffect } from "react";
 import styles from "routes/components/auth/auth.module.scss";

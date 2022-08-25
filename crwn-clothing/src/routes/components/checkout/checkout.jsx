@@ -1,4 +1,4 @@
-import { CartContext } from "context/cart.context";
+import { CartContext } from "context/cart.reducer.context";
 import { useContext } from "react";
 import styles from "routes/components/checkout/checkout.module.scss";
 import { reverseObject } from "utils/array.util";

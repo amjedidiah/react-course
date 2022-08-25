@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useMemo } from "react";
-import { CategoryContext } from "context/category.context";
+import { CategoryContext } from "context/category.reducer.context";
 import { reverseObject } from "utils/array.util";
 
 export const CartContext = createContext({
@@ -8,7 +8,7 @@ export const CartContext = createContext({
   removeFromCart: () => {},
   clearCart: () => {},
   isCartOpen: false,
-  setIsCartOpen: () => {},
+  toggleCart: () => {},
   cartItemsCount: 0,
   cartItemsArray: [],
   cartTotal: 0,
@@ -16,7 +16,7 @@ export const CartContext = createContext({
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, toggleCart] = useState(false);
   const { categoryMap } = useContext(CategoryContext);
 
   const addToCart = (id, category) => {
@@ -86,7 +86,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         isCartOpen,
-        setIsCartOpen,
+        toggleCart,
         cartItemsCount,
         cartItemsArray,
         cartTotal,

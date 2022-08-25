@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Button from "components/button/button";
-import { CartContext } from "context/cart.context";
+import { CartContext } from "context/cart.reducer.context";
 import { useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "routes/components/shop/components/cart/components/cart-dropdown/cart-dropdown.module.scss";

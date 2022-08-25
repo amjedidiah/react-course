@@ -1,14 +1,14 @@
 import styles from "routes/components/shop/components/cart/components/cart-icon/cart-icon.module.scss";
 import { ReactComponent as ShoppingIcon } from "assets/shopping-bag.svg";
 import { useCallback, useContext } from "react";
-import { CartContext } from "context/cart.context";
+import { CartContext } from "context/cart.reducer.context";
 
 export default function CartIcon() {
-  const { isCartOpen, setIsCartOpen, cartItemsCount } = useContext(CartContext);
+  const { isCartOpen, toggleCart, cartItemsCount } = useContext(CartContext);
 
   const toggleCartDropdown = useCallback(() => {
-    setIsCartOpen(!isCartOpen);
-  }, [isCartOpen, setIsCartOpen])
+    toggleCart(!isCartOpen);
+  }, [isCartOpen, toggleCart])
 
   return (
     <div className={styles["cart-icon-container"]} onClick={toggleCartDropdown}>

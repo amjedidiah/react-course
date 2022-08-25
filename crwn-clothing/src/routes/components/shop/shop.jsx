@@ -1,5 +1,5 @@
 import { useContext, useMemo, useState } from "react";
-import { CategoryContext } from "context/category.context";
+import { CategoryContext } from "context/category.reducer.context";
 import styles from "routes/components/shop/shop.module.scss";
 import CategoryPreview from "routes/components/shop/components/category-preview/category-preview";
 import { useParams } from "react-router-dom";

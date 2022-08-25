@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
 import Button from "components/button/button";
-import { CartContext } from "context/cart.context";
+import { CartContext } from "context/cart.reducer.context";
 import styles from "routes/components/shop/components/product/product.module.scss";
 
 export default function Product({ name, price, imageUrl, id, category }) {

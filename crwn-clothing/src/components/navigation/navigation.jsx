@@ -2,7 +2,7 @@ import { Fragment, useCallback, useContext, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styles from "components/navigation/navigation.module.scss";
 import { ReactComponent as CrwnLogo } from "assets/crown.svg";
-import { UserContext } from "context/user.context";
+import { UserContext } from "context/user.reducer.context";
 import { signOutAuth } from "utils/firebase.utils";
 import CartIcon from "routes/components/shop/components/cart/components/cart-icon/cart-icon";
 import CartDropdown from "routes/components/shop/components/cart/components/cart-dropdown/cart-dropdown";
