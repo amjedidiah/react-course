@@ -1,11 +1,12 @@
-import { Fragment, useCallback, useContext, useMemo } from "react";
+import { Fragment, useCallback, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styles from "components/navigation/navigation.module.scss";
 import { ReactComponent as CrwnLogo } from "assets/crown.svg";
-import { UserContext } from "context/user.reducer.context";
 import { signOutAuth } from "utils/firebase.utils";
 import CartIcon from "routes/components/shop/components/cart/components/cart-icon/cart-icon";
 import CartDropdown from "routes/components/shop/components/cart/components/cart-dropdown/cart-dropdown";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "redux/selectors/user.selector";
 
 const pages = [
   {
@@ -15,13 +16,14 @@ const pages = [
 ];
 
 export default function Navigation() {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
 
   const handleLogout = useCallback(async () => {
     await signOutAuth();
   }, []);
 
   const updatedPages = useMemo(() => {
+    console.log("updatedPages", currentUser);
     pages[1] = currentUser
       ? {
           children: "LOGOUT",

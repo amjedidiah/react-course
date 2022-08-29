@@ -1,7 +1,6 @@
 import Form from "components/form/form";
-import { UserContext } from "context/user.reducer.context";
 import { getRedirectResult } from "firebase/auth";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "routes/components/auth/auth.module.scss";
 import {
   auth,
@@ -39,7 +38,6 @@ const buttons = [
 ];
 
 export default function Login() {
-  const {setCurrentUser} = useContext(UserContext);
   useEffect(() => {
     async function handleGoogleUserLogin() {
       try {
@@ -50,7 +48,7 @@ export default function Login() {
     }
 
     handleGoogleUserLogin();
-  }, [setCurrentUser]);
+  }, []);
   
   const handleLogin = async ({ email, password }, setFormValues) => {
     if (!(email && password)) {
