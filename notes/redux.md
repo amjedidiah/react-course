@@ -29,3 +29,7 @@ const logger = (store) => (next) => (action) => {
 ```
 
 ## Memoization Using Reslect Library
+
+## Thunking with Redux Thunk Middleware
+
+- Thunking is allowing functions to be passed as actions

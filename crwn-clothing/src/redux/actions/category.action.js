@@ -1,6 +1,7 @@
 import categoryActionTypes from "redux/types/category.type";
+import { getCategoriesAndDocuments } from "utils/firebase.utils";
 
-export const setCategories = (categories) => ({
+export const setCategories = () => ({
   type: categoryActionTypes.SET_CATEGORIES,
-  payload: categories,
+  payload: getCategoriesAndDocuments("categories"),
 });

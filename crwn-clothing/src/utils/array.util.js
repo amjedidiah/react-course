@@ -6,4 +6,4 @@ export const objectifyArray = (arr) => {
     return result;
 }
 
-export const reverseObject = obj => Object.values(obj).filter(it => it);
+export const reverseObject = obj => Object.values(obj).filter(Boolean);

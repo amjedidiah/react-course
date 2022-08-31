@@ -3,23 +3,20 @@ import styles from "routes/components/shop/shop.module.scss";
 import CategoryPreview from "routes/components/shop/components/category-preview/category-preview";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCategoryMap } from "redux/selectors/category.selector";
-import { getCategoriesAndDocuments } from "utils/firebase.utils";
+import { selectCategoryLoading, selectCategoryMap } from "redux/selectors/category.selector";
 import { setCategories } from "redux/actions/category.action";
+import Spinner from "components/spinner/spinner";
 
 export default function Shop() {
   const categoryMap = useSelector(selectCategoryMap);
+  const categoryIsLoading = useSelector(selectCategoryLoading);
   const [shouldSlice, setShouldSlice] = useState(false);
   const dispatch = useDispatch();
   const params = useParams();
   const category = params["*"].split("/")[0];
 
   useEffect(() => {
-    const getCategories = async () => {
-      const categories = await getCategoriesAndDocuments("categories");
-      return dispatch(setCategories(categories))
-    };
-    getCategories();
+    dispatch(setCategories())
 
     /* Ought To Be Called One Time On The Backend */
     // const addCollection = async () => {
@@ -42,6 +39,10 @@ export default function Shop() {
       return Object.keys(categoryMap);
     }
   }, [category, categoryMap]);
+
+  if(categoryIsLoading) {
+    return <Spinner />
+  }
 
   if (categoryMap && !categoryKeys.length && category) {
     return <h2>No products for category {category}</h2>;
