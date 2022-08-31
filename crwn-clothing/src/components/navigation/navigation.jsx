@@ -23,7 +23,6 @@ export default function Navigation() {
   }, []);
 
   const updatedPages = useMemo(() => {
-    console.log("updatedPages", currentUser);
     pages[1] = currentUser
       ? {
           children: "LOGOUT",

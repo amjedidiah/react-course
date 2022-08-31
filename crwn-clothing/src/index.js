@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "index.scss";
 import App from "App";
 import reportWebVitals from "reportWebVitals";
-import { CategoryProvider } from "context/category.reducer.context";
 import { CartProvider } from "context/cart.reducer.context";
 import { Provider } from "react-redux";
 import { store } from "redux/store";
@@ -12,11 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-        <CategoryProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CategoryProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
     </Provider>
   </React.StrictMode>
 );

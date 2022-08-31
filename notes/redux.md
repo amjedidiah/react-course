@@ -9,17 +9,23 @@
   -- Context: each context has its own dispatch and reducers that it accesses separately from other contexts.
   -- Redux: all reducers are combined into one reducer, which is accessibile by all components. One disptch function then updates the different reducers.
 
-## ToDo
+## Currying
 
-- `yarn add redux react-redux redux-logger`
-- redux directory
-  -- reducers/root.reducer.js
+- A function receiving another function
 
-  ```js
-  import { combineReducers } from "redux";
-  import userReducer from "./user.reducer";
+### Sample Redux Middleware Function
 
-  export const rootReducer = combineReducers({
-    user: userReducer,
-  });
-  ```
+```js
+const logger = (store) => (next) => (action) => {
+  if (!action.type) {
+    return next(action);
+  }
+
+  console.log("dispatching", action);
+  let result = next(action);
+  console.log("next state", store.getState());
+  return result;
+};
+```
+
+## Memoization Using Reslect Library

@@ -12,18 +12,18 @@ const categorySlice = {
 };
 
 const categoryActionTypes = {
-  SET_CATEGORY_MAP: "SET_CATEGORY_MAP",
+  SET_CATEGORIES: "SET_CATEGORIES",
 };
 
 const categoryReducer = (state, { type, payload }) => {
   switch (type) {
-    case categoryActionTypes.SET_CATEGORY_MAP:
+    case categoryActionTypes.SET_CATEGORIES:
       return {
         ...state,
         categoryMap: payload,
       };
     default:
-      return state;
+      alert("error with type dispatched");
   }
 };
 
@@ -38,7 +38,7 @@ export const CategoryProvider = ({ children }) => {
     const getCategories = async () => {
       const categories = await getCategoriesAndDocuments("categories");
       return dispatch({
-        type: categoryActionTypes.SET_CATEGORY_MAP,
+        type: categoryActionTypes.SET_CATEGORIES,
         payload: categories,
       });
     };
