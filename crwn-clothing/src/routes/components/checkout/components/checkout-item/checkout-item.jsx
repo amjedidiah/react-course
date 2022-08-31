@@ -1,13 +1,27 @@
-import { CartContext } from "context/cart.reducer.context";
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "redux/actions/cart.action";
+import { selectCartItems } from "redux/selectors/cart.selector";
+import { selectCategoryMap } from "redux/selectors/category.selector";
 import styles from "routes/components/checkout/components/checkout-item/checkout-item.module.scss";
 
-export default function CheckoutItem({ id, name, imageUrl, price, quantity, category }) {
-  const { removeFromCart, addToCart } = useContext(CartContext);
-  const removeItemFromCart = () => removeFromCart(id);
-  const removeItemsFromCart = () => removeFromCart(id, true);
-  const addItemToCart = () => addToCart(id, category);
+export default function CheckoutItem({
+  id,
+  name,
+  imageUrl,
+  price,
+  quantity,
+  category,
+}) {
+  const categoryMap = useSelector(selectCategoryMap);
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
+
+  const removeItemFromCart = () => dispatch(removeFromCart({ id, cartItems }));
+  const removeItemsFromCart = () =>
+    dispatch(removeFromCart({ id, cartItems, removeAll: true }));
+  const addItemToCart = () =>
+    dispatch(addToCart({ id, category, categoryMap, cartItems }));
 
   return (
     <div className={styles["checkout-item-container"]}>
@@ -25,7 +39,9 @@ export default function CheckoutItem({ id, name, imageUrl, price, quantity, cate
         </span>
       </div>
       <div className={styles.price}>{price}</div>
-      <div className={styles["remove-button"]} onClick={removeItemsFromCart}>&#10005;</div>
+      <div className={styles["remove-button"]} onClick={removeItemsFromCart}>
+        &#10005;
+      </div>
     </div>
   );
 }

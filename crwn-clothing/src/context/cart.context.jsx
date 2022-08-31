@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useMemo } from "react";
-import { CategoryContext } from "context/category.reducer.context";
+import { CategoryContext } from "context/category.context";
 import { reverseObject } from "utils/array.util";
 
 export const CartContext = createContext({

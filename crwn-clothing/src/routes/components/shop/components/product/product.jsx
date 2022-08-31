@@ -1,13 +1,18 @@
-import { useContext } from "react";
 import PropTypes from "prop-types";
 import Button from "components/button/button";
-import { CartContext } from "context/cart.reducer.context";
 import styles from "routes/components/shop/components/product/product.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategoryMap } from "redux/selectors/category.selector";
+import { selectCartItems } from "redux/selectors/cart.selector";
+import { addToCart } from "redux/actions/cart.action";
 
 export default function Product({ name, price, imageUrl, id, category }) {
-  const { addToCart } = useContext(CartContext);
+  const categoryMap = useSelector(selectCategoryMap);
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
 
-  const addItemToCart = () => addToCart(id, category);
+  const addItemToCart = () =>
+    dispatch(addToCart({ id, category, categoryMap, cartItems }));
 
   return (
     <div className={styles["product-card-container"]}>

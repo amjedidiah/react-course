@@ -1,14 +1,16 @@
 import classNames from "classnames";
 import Button from "components/button/button";
-import { CartContext } from "context/cart.reducer.context";
-import { useCallback, useContext } from "react";
+import { useCallback } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { selectCartIsOpen, selectCartItemsArray } from "redux/selectors/cart.selector";
 import styles from "routes/components/shop/components/cart/components/cart-dropdown/cart-dropdown.module.scss";
 import CartItem from "routes/components/shop/components/cart/components/cart-item/cart-item";
 
 export default function CartDropdown() {
-  const { isCartOpen, cartItemsArray } = useContext(CartContext);
   const navigate = useNavigate();
+  const isCartOpen = useSelector(selectCartIsOpen);
+  const cartItemsArray = useSelector(selectCartItemsArray);
 
   const goToCheckout = useCallback(() => navigate("/checkout"), [navigate]);
 
