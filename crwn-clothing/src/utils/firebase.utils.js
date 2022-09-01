@@ -53,6 +53,18 @@ export const signOutAuth = async () => await signOut(auth);
 export const onAppAuthStateChanged = async (callback) =>
   await onAuthStateChanged(auth, callback);
 
+export const getCurrentUser = () =>
+  new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+
 // Database
 export const db = getFirestore();
 export const createUserFromAuth = async ({ uid, displayName, email }) => {
