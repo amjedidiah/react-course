@@ -4,7 +4,7 @@ import CategoryPreview from "routes/components/shop/components/category-preview/
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategoryLoading, selectCategoryMap } from "redux/selectors/category.selector";
-import { setCategories } from "redux/actions/category.action";
+import { fetchCategoriesStart } from "redux/actions/category.action";
 import Spinner from "components/spinner/spinner";
 
 export default function Shop() {
@@ -16,7 +16,7 @@ export default function Shop() {
   const category = params["*"].split("/")[0];
 
   useEffect(() => {
-    dispatch(setCategories())
+    dispatch(fetchCategoriesStart())
 
     /* Ought To Be Called One Time On The Backend */
     // const addCollection = async () => {
