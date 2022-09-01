@@ -33,3 +33,18 @@ const logger = (store) => (next) => (action) => {
 ## Thunking with Redux Thunk Middleware
 
 - Thunking is allowing functions to be passed as actions
+
+## Sagas
+
+- Runs after reducers have been updated
+
+### Sagas Methods
+
+- `yield`: return result
+- `call`: similar to await, resolves an async function
+- `all`: call a number of async functions
+- `put`: similar to dispatch
+
+## Generator Functions
+
+- [Generator Function Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
