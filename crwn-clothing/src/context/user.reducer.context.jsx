@@ -24,7 +24,7 @@ const userReducer = (state, { type, payload }) => {
         currentUser: payload,
       };
     default:
-      return alert("error occured");
+      return alert("error occurred");
   }
 };
 

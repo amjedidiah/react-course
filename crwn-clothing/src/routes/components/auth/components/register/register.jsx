@@ -1,9 +1,7 @@
 import Form from "components/form/form";
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserFromAuth,
-} from "utils/firebase.utils";
 import styles from "routes/components/auth/auth.module.scss";
+import { emailRegisterPending } from "redux/actions/user.action";
+import { useDispatch } from "react-redux";
 
 const formFields = [
   {
@@ -44,6 +42,7 @@ const buttons = [
 ];
 
 export default function Register() {
+  const dispatch = useDispatch();
   const handleRegister = async (
     { displayName, email, password, confirmPassword },
     setFormValues
@@ -52,25 +51,13 @@ export default function Register() {
       return alert("Passwords do not match");
     }
 
-    try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserFromAuth({ ...user, displayName });
-      setFormValues({});
-    } catch (err) {
-      if (err.code === "auth/email-already-in-use") {
-        return alert("Email already in use");
-      }
-      console.log("err", err);
-    }
+    dispatch(emailRegisterPending({ displayName, email, password }));
+    setFormValues({});
   };
 
   return (
     <div className={styles["auth-child-container"]}>
-      <h2>Dont Have An Account?</h2>
+      <h2>Don't Have An Account?</h2>
       <span>Register with your email and password</span>
 
       <Form

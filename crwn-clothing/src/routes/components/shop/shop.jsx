@@ -3,7 +3,10 @@ import styles from "routes/components/shop/shop.module.scss";
 import CategoryPreview from "routes/components/shop/components/category-preview/category-preview";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCategoryLoading, selectCategoryMap } from "redux/selectors/category.selector";
+import {
+  selectCategoryLoading,
+  selectCategoryMap,
+} from "redux/selectors/category.selector";
 import { fetchCategoriesStart } from "redux/actions/category.action";
 import Spinner from "components/spinner/spinner";
 
@@ -16,13 +19,14 @@ export default function Shop() {
   const category = params["*"].split("/")[0];
 
   useEffect(() => {
-    dispatch(fetchCategoriesStart())
+    dispatch(fetchCategoriesStart());
 
     /* Ought To Be Called One Time On The Backend */
     // const addCollection = async () => {
     //   await addCollectionAndDocuments('categories', PRODUCTS);
     // }
     // addCollection();
+
     // Disabled because dispatch is never updated throughout the React app lifecycle
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -40,8 +44,8 @@ export default function Shop() {
     }
   }, [category, categoryMap]);
 
-  if(categoryIsLoading) {
-    return <Spinner />
+  if (categoryIsLoading) {
+    return <Spinner />;
   }
 
   if (categoryMap && !categoryKeys.length && category) {

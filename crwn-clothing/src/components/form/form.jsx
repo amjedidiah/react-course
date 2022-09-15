@@ -5,7 +5,6 @@ import Button from "components/button/button";
 import FormInput from "components/form/components/form-input/form-input";
 import styles from "components/form/form.module.scss";
 
-
 export default function Form({ formFields, buttons, onSubmit, formType }) {
   const [formValues, setFormValues] = useState({});
 

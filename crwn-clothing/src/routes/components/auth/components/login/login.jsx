@@ -1,12 +1,8 @@
 import Form from "components/form/form";
-import { getRedirectResult } from "firebase/auth";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { emailLoginPending } from "redux/actions/user.action";
 import styles from "routes/components/auth/auth.module.scss";
-import {
-  auth,
-  signInAuthWithEmailAndPassword,
-  signInWithGoogleRedirect,
-} from "utils/firebase.utils";
+import { signInWithGoogleRedirect } from "utils/firebase.utils";
 
 const formFields = [
   {
@@ -38,37 +34,15 @@ const buttons = [
 ];
 
 export default function Login() {
-  useEffect(() => {
-    async function handleGoogleUserLogin() {
-      try {
-        await getRedirectResult(auth);
-      } catch (err) {
-        console.log("err", err);
-      }
-    }
+  const dispatch = useDispatch();
 
-    handleGoogleUserLogin();
-  }, []);
-  
   const handleLogin = async ({ email, password }, setFormValues) => {
     if (!(email && password)) {
       return alert("Please fill in all fields");
     }
 
-    try {
-      await signInAuthWithEmailAndPassword(email, password);
-      setFormValues({});
-    } catch (err) {
-      switch (err.code) {
-        case "auth/user-not-found":
-          return alert("User not found");
-        case "auth/wrong-password":
-          return alert("Wrong password");
-        default:
-          console.log("err", err);
-          return alert("Something went wrong");
-      }
-    }
+    dispatch(emailLoginPending(email, password));
+    setFormValues({});
   };
 
   return (
