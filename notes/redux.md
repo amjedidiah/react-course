@@ -3,11 +3,11 @@
 ## Difference Between Redux & Context API
 
 - Accessibility
-  -- Context can be used to just wrap the compoents needing it.
+  -- Context can be used to just wrap the components needing it.
   -- Redux will always wrap the whole app: global state management.
 - Flow of data
   -- Context: each context has its own dispatch and reducers that it accesses separately from other contexts.
-  -- Redux: all reducers are combined into one reducer, which is accessibile by all components. One disptch function then updates the different reducers.
+  -- Redux: all reducers are combined into one reducer, which is accessible by all components. One dispatch function then updates the different reducers.
 
 ## Currying
 
@@ -28,7 +28,7 @@ const logger = (store) => (next) => (action) => {
 };
 ```
 
-## Memoization Using Reslect Library
+## Memoization Using Reselect Library
 
 ## Thunking with Redux Thunk Middleware
 
