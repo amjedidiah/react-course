@@ -2,9 +2,8 @@ import PropTypes from "prop-types";
 import Button from "components/button/button";
 import styles from "routes/components/shop/components/product/product.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCategoryMap } from "redux/selectors/category.selector";
-import { selectCartItems } from "redux/selectors/cart.selector";
-import { addToCart } from "redux/actions/cart.action";
+import { selectCategoryMap } from "redux/slices/category.slice";
+import { selectCartItems, addToCart } from "redux/slices/cart.slice";
 
 export default function Product({ name, price, imageUrl, id, category }) {
   const categoryMap = useSelector(selectCategoryMap);

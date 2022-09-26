@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { authenticateUserPending } from "redux/actions/user.action";
+import { authenticateUserPending } from "redux/slices/user.slice";
 import AppRoutes from "routes/routes";
 
 export default function App() {

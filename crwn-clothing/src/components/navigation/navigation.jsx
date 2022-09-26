@@ -5,8 +5,7 @@ import { ReactComponent as CrwnLogo } from "assets/crown.svg";
 import CartIcon from "routes/components/shop/components/cart/components/cart-icon/cart-icon";
 import CartDropdown from "routes/components/shop/components/cart/components/cart-dropdown/cart-dropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "redux/selectors/user.selector";
-import { logoutPending } from "redux/actions/user.action";
+import { selectCurrentUser, logoutPending } from "redux/slices/user.slice";
 
 const pages = [
   {

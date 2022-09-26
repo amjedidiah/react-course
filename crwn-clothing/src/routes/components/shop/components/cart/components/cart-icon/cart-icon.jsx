@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCartIsOpen,
   selectCartItemsCount,
-} from "redux/selectors/cart.selector";
-import { toggleCart } from "redux/actions/cart.action";
+  toggleCart,
+} from "redux/slices/cart.slice";
 
 export default function CartIcon() {
   const isCartOpen = useSelector(selectCartIsOpen);

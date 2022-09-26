@@ -2,7 +2,7 @@ import styles from "routes/components/checkout/checkout.module.scss";
 import { reverseObject } from "utils/array.util";
 import CheckoutItem from "routes/components/checkout/components/checkout-item/checkout-item";
 import { useSelector } from "react-redux";
-import { selectCartItems, selectCartTotal } from "redux/selectors/cart.selector";
+import { selectCartItems, selectCartTotal } from "redux/slices/cart.slice";
 
 const headerBlocks = ["Product", "Description", "Quantity", "Price", "Remove"];
 

@@ -1,6 +1,6 @@
 import Form from "components/form/form";
 import { useDispatch } from "react-redux";
-import { emailLoginPending } from "redux/actions/user.action";
+import { emailLoginPending } from "redux/slices/user.slice";
 import styles from "routes/components/auth/auth.module.scss";
 import { signInWithGoogleRedirect } from "utils/firebase.utils";
 

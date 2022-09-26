@@ -1,11 +1,10 @@
 import { put, call, all, takeLatest } from "redux-saga/effects";
 import {
-  authenticateUserRejected,
   authenticateUserFulfilled,
+  authenticateUserRejected,
   logoutFulfilled,
   logoutRejected,
-} from "redux/actions/user.action";
-import userActionTypes from "redux/types/user.type";
+} from "redux/slices/user.slice";
 import {
   createAuthUserWithEmailAndPassword,
   createUserFromAuth,
@@ -83,28 +82,25 @@ export function* logout() {
 
 export function* onAuthenticateUserRejected() {
   yield takeLatest(
-    userActionTypes.AUTHENTICATE_USER_REJECTED,
+    "user/authenticateUserRejected",
     alertAuthenticateUserRejected
   );
 }
 
 export function* onEmailLogin() {
-  yield takeLatest(userActionTypes.EMAIL_LOGIN_PENDING, emailLogin);
+  yield takeLatest("user/emailLoginPending", emailLogin);
 }
 
 export function* onAuthenticateUser() {
-  yield takeLatest(
-    userActionTypes.AUTHENTICATE_USER_PENDING,
-    authenticateUserAsync
-  );
+  yield takeLatest("user/authenticateUserPending", authenticateUserAsync);
 }
 
 export function* onEmailRegister() {
-  yield takeLatest(userActionTypes.EMAIL_REGISTER_PENDING, emailRegister);
+  yield takeLatest("user/emailRegisterPending", emailRegister);
 }
 
 export function* onLogout() {
-  yield takeLatest(userActionTypes.LOGOUT_PENDING, logout);
+  yield takeLatest("user/logoutPending", logout);
 }
 
 export function* userSaga() {

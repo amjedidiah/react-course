@@ -1,6 +1,6 @@
 import Form from "components/form/form";
 import styles from "routes/components/auth/auth.module.scss";
-import { emailRegisterPending } from "redux/actions/user.action";
+import { emailRegisterPending } from "redux/slices/user.slice";
 import { useDispatch } from "react-redux";
 
 const formFields = [

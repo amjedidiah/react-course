@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCategoryLoading,
   selectCategoryMap,
-} from "redux/selectors/category.selector";
-import { fetchCategoriesStart } from "redux/actions/category.action";
+  fetchCategoriesStart,
+} from "redux/slices/category.slice";
 import Spinner from "components/spinner/spinner";
 
 export default function Shop() {

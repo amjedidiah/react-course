@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "redux/actions/cart.action";
-import { selectCartItems } from "redux/selectors/cart.selector";
-import { selectCategoryMap } from "redux/selectors/category.selector";
+import {
+  addToCart,
+  removeFromCart,
+  selectCartItems,
+} from "redux/slices/cart.slice";
+import { selectCategoryMap } from "redux/slices/category.slice";
 import styles from "routes/components/checkout/components/checkout-item/checkout-item.module.scss";
 
 export default function CheckoutItem({

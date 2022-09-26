@@ -1,8 +1,0 @@
-const categoryActionTypes = {
-  SET_CATEGORIES: "category/SET_CATEGORIES",
-  SET_CATEGORIES_PENDING: "category/SET_CATEGORIES_PENDING",
-  SET_CATEGORIES_REJECTED: "category/SET_CATEGORIES_REJECTED",
-  SET_CATEGORIES_FULFILLED: "category/SET_CATEGORIES_FULFILLED",
-};
-
-export default categoryActionTypes;
