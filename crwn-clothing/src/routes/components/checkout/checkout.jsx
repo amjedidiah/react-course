@@ -3,6 +3,7 @@ import { reverseObject } from "utils/array.util";
 import CheckoutItem from "routes/components/checkout/components/checkout-item/checkout-item";
 import { useSelector } from "react-redux";
 import { selectCartItems, selectCartTotal } from "redux/slices/cart.slice";
+import PaymentForm from "components/payment-form/payment-form";
 
 const headerBlocks = ["Product", "Description", "Quantity", "Price", "Remove"];
 
@@ -24,6 +25,7 @@ export default function Checkout() {
       ))}
       <div className={styles.total}>
         <span>TOTAL: ${cartTotal}</span>
+        <PaymentForm />
       </div>
     </div>
   );
