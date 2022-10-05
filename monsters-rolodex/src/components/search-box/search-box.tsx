@@ -1,12 +1,18 @@
-import PropTypes from "prop-types";
-import "./search-box.css"
+import "./search-box.css";
+
+interface SearchBoxProps {
+    onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    searchString: string;
+    placeholder?: string;
+    className?: string;
+}
 
 export default function SearchBox({
     onChangeHandler,
     searchString,
     placeholder,
     className,
-}) {
+}: SearchBoxProps) {
     return (
         <input
             type="search"
@@ -17,11 +23,3 @@ export default function SearchBox({
         />
     );
 }
-
-SearchBox.propTypes = {
-    onChangeHandler: PropTypes.func.isRequired,
-    searchString: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
-    className: PropTypes.string,
-};
-

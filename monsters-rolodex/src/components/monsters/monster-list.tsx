@@ -1,8 +1,12 @@
-import PropTypes from "prop-types";
 import Monster from "./components/monster";
 import "./monster-list.css";
+import { Monster as MonsterType } from "../../App"
 
-export default function MonsterList({ filteredMonsters }) {
+type MonsterListProps = {
+    filteredMonsters: MonsterType[];
+}
+
+export default function MonsterList({ filteredMonsters }: MonsterListProps) {
     if (!filteredMonsters.length) {
         return <h1>No monsters to display</h1>;
     }
@@ -15,7 +19,3 @@ export default function MonsterList({ filteredMonsters }) {
         </div>
     );
 }
-
-MonsterList.propTypes = {
-    filteredMonsters: PropTypes.array.isRequired,
-};
