@@ -41,7 +41,7 @@ export default function Login() {
       return alert("Please fill in all fields");
     }
 
-    dispatch(emailLoginPending(email, password));
+    dispatch(emailLoginPending({ email, password }));
     setFormValues({});
   };
 

@@ -50,7 +50,7 @@
       }
     }
 
-    &[disabled] {
+    &[disabled], &[disabled]:hover {
       background-color: #c3c3c3;
       border: none;
       cursor: not-allowed;

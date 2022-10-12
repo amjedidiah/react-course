@@ -24,6 +24,7 @@ export default function Product({ name, price, imageUrl, id, category }) {
         buttonType="inverted"
         value="Add to cart"
         onClick={addItemToCart}
+        className={styles["product-button"]}
       />
     </div>
   );

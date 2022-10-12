@@ -23,7 +23,7 @@ export default function Button({
       <input
         className={classNames(
           styles["button-container"],
-          buttonTypeClassName,
+          styles[buttonTypeClassName],
           className
         )}
         disabled={loading}

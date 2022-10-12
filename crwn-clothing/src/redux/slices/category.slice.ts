@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Category, CategoryMap, CategoryState, StateError, StoreState } from "redux/redux.types";
 
 export const categorySlice = createSlice({
   name: "category",
@@ -6,16 +7,16 @@ export const categorySlice = createSlice({
     categories: null,
     error: null,
     isLoading: false,
-  },
+  } as CategoryState,
   reducers: {
     fetchCategoriesStart: (state) => {
       state.isLoading = true;
     },
-    fetchCategoriesFulfilled: (state, action) => {
+    fetchCategoriesFulfilled: (state, action: PayloadAction<Category[]>) => {
       state.categories = action.payload;
       state.isLoading = false;
     },
-    fetchCategoriesRejected: (state, action) => {
+    fetchCategoriesRejected: (state, action: PayloadAction<StateError>) => {
       state.error = action.payload;
       state.isLoading = false;
     },
@@ -28,11 +29,11 @@ export const {
   fetchCategoriesRejected,
 } = categorySlice.actions;
 
-export const selectCategories = (state) => state.category.categories ?? [];
+export const selectCategories = (state: StoreState) => state.category.categories ?? [];
 
-export const selectCategoryLoading = (state) => state.category.isLoading;
+export const selectCategoryLoading = (state: StoreState) => state.category.isLoading;
 
-export const selectCategoryMap = (state) =>
+export const selectCategoryMap = (state: StoreState) =>
   (state.category.categories ?? []).reduce((acc, category) => {
     const { title, items } = category;
     acc[title.toLowerCase()] = items.map((item) => ({
@@ -40,6 +41,6 @@ export const selectCategoryMap = (state) =>
       category: title.toLowerCase(),
     }));
     return acc;
-  }, {});
+  }, {} as CategoryMap);
 
 export default categorySlice.reducer;

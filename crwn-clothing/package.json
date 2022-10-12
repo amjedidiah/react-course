@@ -34,7 +34,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "netlify-dev": "netlify dev",
+    "dev": "netlify dev",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -44,7 +44,17 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".tsx",
+            ".ts"
+          ]
+        }
+      }
+    }
   },
   "browserslist": {
     "production": [
