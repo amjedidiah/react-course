@@ -10,6 +10,8 @@ import {
   onAuthStateChanged,
   User,
   NextOrObserver,
+  UserCredential,
+  updateProfile,
 } from "firebase/auth";
 import {
   collection,
@@ -26,6 +28,12 @@ import { Category } from "redux/redux.types";
 
 type ObjectToAdd = {
   title: string;
+};
+
+export interface UserData extends User {
+  [x: string]: any;
+  displayName: string | null;
+  createdAt?: string;
 }
 
 const firebaseConfig = {
@@ -39,7 +47,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 // logEvent(analytics, 'notification_received', {
 //     notification_id: '123',
@@ -50,16 +58,22 @@ const app = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
 
-export const auth = getAuth(app);
-export const signInWithGoogleRedirect = async () =>
-  await signInWithRedirect(auth, googleProvider);
-export const createAuthUserWithEmailAndPassword = async (email: string, password: string) =>
+export const auth = getAuth(); // export const auth = getAuth(app);
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
+export const createAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+): Promise<UserCredential | void> =>
   await createUserWithEmailAndPassword(auth, email, password);
-export const signInAuthWithEmailAndPassword = async (email: string, password: string) =>
+export const signInAuthWithEmailAndPassword = async (
+  email: string,
+  password: string
+): Promise<UserCredential | void> =>
   await signInWithEmailAndPassword(auth, email, password);
-export const signOutAuth = async () => await signOut(auth);
-export const onAppAuthStateChanged = async (callback: NextOrObserver<User>) =>
-  await onAuthStateChanged(auth, callback);
+export const signOutAuth = async (): Promise<void> => await signOut(auth);
+export const onAppAuthStateChanged = (callback: NextOrObserver<User>) =>
+  onAuthStateChanged(auth, callback);
 
 export const getCurrentUser = (): Promise<User | null> =>
   new Promise((resolve, reject) => {
@@ -75,8 +89,10 @@ export const getCurrentUser = (): Promise<User | null> =>
 
 // Database
 export const db = getFirestore();
-export const createUserFromAuth = async (userAuth: User): Promise<void | QueryDocumentSnapshot<User>> => {
-  if(!userAuth) return;
+export const createUserFromAuth = async (
+  userAuth: User
+): Promise<void | QueryDocumentSnapshot<User>> => {
+  if (!userAuth) return;
 
   const { uid, displayName, email } = userAuth;
   const userDocRef = doc(db, "users", uid);
@@ -91,6 +107,7 @@ export const createUserFromAuth = async (userAuth: User): Promise<void | QueryDo
         email,
         createdAt,
       });
+      await updateProfile(auth.currentUser as User, { displayName });
     } catch (error) {
       console.log("error", error);
     }
@@ -99,7 +116,7 @@ export const createUserFromAuth = async (userAuth: User): Promise<void | QueryDo
   return userSnapShot as QueryDocumentSnapshot<User>;
 };
 
-export const addCollectionAndDocuments = async <T extends ObjectToAdd> (
+export const addCollectionAndDocuments = async <T extends ObjectToAdd>(
   collectionKey: string,
   objectsToAdd: T[]
 ): Promise<void> => {
@@ -112,7 +129,9 @@ export const addCollectionAndDocuments = async <T extends ObjectToAdd> (
   return await batch.commit();
 };
 
-export const getCategoriesAndDocuments = async (collectionName: string): Promise<Category[]> => {
+export const getCategoriesAndDocuments = async (
+  collectionName: string
+): Promise<Category[]> => {
   const collectionRef = collection(db, collectionName);
   const q = query(collectionRef);
 

@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   AuthDetails,
-  CurrentUser,
   StateError,
-  StoreState,
+  RootState,
   UserState,
 } from "redux/redux.types";
+import { UserData } from "utils/firebase.utils";
 
 export const userSlice = createSlice({
   name: "user",
@@ -27,7 +27,7 @@ export const userSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    authenticateUserFulfilled: (state, action: PayloadAction<CurrentUser>) => {
+    authenticateUserFulfilled: (state, action: PayloadAction<UserData>) => {
       state.isLoading = false;
       state.currentUser = action.payload;
     },
@@ -61,7 +61,7 @@ export const {
   logoutRejected,
 } = userSlice.actions;
 
-export const selectCurrentUser = (state: StoreState): CurrentUser =>
+export const selectCurrentUser = (state: RootState):UserData | null =>
   state.user.currentUser;
 
 export default userSlice.reducer;

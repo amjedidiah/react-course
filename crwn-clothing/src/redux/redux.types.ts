@@ -1,3 +1,5 @@
+import { UserData } from "utils/firebase.utils";
+
 export type AuthDetails = {
   email: string;
   password: string;
@@ -32,12 +34,6 @@ export type CartState = {
   readonly isCartOpen: boolean;
 };
 
-export type CurrentUser = {
-  displayName: string;
-  createdAt: string;
-  email: string;
-} | null;
-
 export interface Product {
   id: number;
   imageUrl: string;
@@ -49,16 +45,19 @@ export interface ProductWithCategory extends Product {
   category: string;
 }
 
-export type StateError = Error | null;
+export type StateError = {
+  code: string;
+  message: string;
+} | null;
 
-export type StoreState = {
+export type RootState = {
   readonly cart: CartState;
   readonly category: CategoryState;
   readonly user: UserState;
 };
 
 export type UserState = {
-  readonly currentUser: CurrentUser;
+  readonly currentUser: UserData | null;
   readonly error: StateError;
   readonly isLoading: boolean;
 };

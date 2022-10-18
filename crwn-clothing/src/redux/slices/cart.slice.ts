@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItem, CartItems, CartState, CategoryMap, StoreState } from "redux/redux.types";
+import { CartItems, CartState, CategoryMap, RootState } from "redux/redux.types";
 import { reverseObject } from "utils/array.util";
 
 type CartAddObject = {
@@ -61,20 +61,20 @@ export const clearCart = () => cartSlice.actions.updateCartItems({});
 
 export const { toggleCart } = cartSlice.actions;
 
-export const selectCartIsOpen = (state: StoreState) => state.cart.isCartOpen;
+export const selectCartIsOpen = (state: RootState) => state.cart.isCartOpen;
 
-export const selectCartItems = (state: StoreState) => state.cart.cartItems;
+export const selectCartItems = (state: RootState) => state.cart.cartItems;
 
-export const selectCartItemsArray = (state: StoreState): CartItem[] => reverseObject<CartItems>(state.cart.cartItems);
+export const selectCartItemsArray = (state: RootState) => reverseObject<CartItems>(state.cart.cartItems);
 
-export const selectCartItemsCount = (state: StoreState) =>
+export const selectCartItemsCount = (state: RootState) =>
   Object.keys(state.cart.cartItems).reduce(
     (accumulatedQuantity, cartItemKey) =>
       accumulatedQuantity + (state.cart.cartItems[cartItemKey]?.quantity ?? 0),
     0
   );
 
-export const selectCartTotal = (state: StoreState) =>
+export const selectCartTotal = (state: RootState) =>
   Object.keys(state.cart.cartItems).reduce(
     (accumulatedQuantity, cartItemKey) =>
       accumulatedQuantity +

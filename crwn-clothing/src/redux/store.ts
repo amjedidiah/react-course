@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistStore, persistReducer, PersistConfig } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import createSagaMiddleware from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
@@ -14,11 +14,16 @@ import { rootSaga } from "redux/sagas/root-saga";
 
 // Util imports
 import { isProduction } from "utils/env.util";
+import { RootState } from "./redux.types";
+
+type ExtendedPersistConfig = PersistConfig<RootState> & {
+  whitelist: (keyof RootState)[];
+}
 
 // Saga-related
 const sagaMiddleware = createSagaMiddleware();
 
-const persistConfig = {
+const persistConfig: ExtendedPersistConfig = {
   key: "root",
   storage,
   whitelist: ["cart"],
