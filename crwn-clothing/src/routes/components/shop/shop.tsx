@@ -16,7 +16,7 @@ export default function Shop() {
   const [shouldSlice, setShouldSlice] = useState(false);
   const dispatch = useDispatch();
   const params = useParams();
-  const category = params["*"].split("/")[0];
+  const category = params["*"]?.split("/")[0];
 
   useEffect(() => {
     dispatch(fetchCategoriesStart());

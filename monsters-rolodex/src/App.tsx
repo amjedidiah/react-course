@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { ChangeEvent, useEffect, useState, useMemo } from "react";
 import MonsterList from "./components/monsters/monster-list";
 import SearchBox from "./components/search-box/search-box";
 import "./App.css";
@@ -21,7 +21,7 @@ export default function App() {
       : [];
   }, [monsters, searchString]);
 
-  const search = (e: React.ChangeEvent<HTMLInputElement>): void =>
+  const search = (e: ChangeEvent<HTMLInputElement>): void =>
     setSearchString(e.target.value.toLowerCase());
 
   useEffect(() => {

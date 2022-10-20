@@ -1,11 +1,15 @@
 import classNames from "classnames";
-import PropTypes from "prop-types";
 import { useMemo } from "react";
+import { Category } from "redux/redux.types";
 import styles from "routes/components/shop/components/category-preview/category-preview.module.scss";
 import Product from "routes/components/shop/components/product/product";
 import { useNavigateToCategory } from "routes/hooks/shop.hook";
 
-export default function CategoryPreview({ title, items, shouldSlice }) {
+type CategoryPreviewProps = {
+  shouldSlice: boolean;
+} & Category
+
+export default function CategoryPreview({ title, items, shouldSlice }: CategoryPreviewProps) {
   const navigateToCategory = useNavigateToCategory(title, shouldSlice);
 
   const products = useMemo(() => {
@@ -35,9 +39,3 @@ export default function CategoryPreview({ title, items, shouldSlice }) {
     </div>
   );
 }
-
-CategoryPreview.propTypes = {
-  title: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired,
-  shouldSlice: PropTypes.bool.isRequired,
-};

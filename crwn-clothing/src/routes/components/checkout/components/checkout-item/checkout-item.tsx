@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addToCart,
@@ -7,6 +6,7 @@ import {
 } from "redux/slices/cart.slice";
 import { selectCategoryMap } from "redux/slices/category.slice";
 import styles from "routes/components/checkout/components/checkout-item/checkout-item.module.scss";
+import { CartItemProps } from "routes/components/shop/components/cart/components/cart-item/cart-item";
 
 export default function CheckoutItem({
   id,
@@ -15,7 +15,7 @@ export default function CheckoutItem({
   price,
   quantity,
   category,
-}) {
+}: CartItemProps) {
   const categoryMap = useSelector(selectCategoryMap);
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
@@ -48,10 +48,3 @@ export default function CheckoutItem({
     </div>
   );
 }
-
-CheckoutItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string,
-  price: PropTypes.number.isRequired,
-  quantity: PropTypes.number.isRequired,
-};

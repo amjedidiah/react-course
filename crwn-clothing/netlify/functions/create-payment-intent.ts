@@ -1,3 +1,7 @@
+declare var require: any;
+declare var process: any;
+declare var exports: any;
+
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -21,4 +25,4 @@ exports.handler = async (event) => {
       body: JSON.stringify({ statusCode: 500, message: error.message }),
     };
   }
-}
+};

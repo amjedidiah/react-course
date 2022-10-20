@@ -61,7 +61,7 @@ export const {
   logoutRejected,
 } = userSlice.actions;
 
-export const selectCurrentUser = (state: RootState):UserData | null =>
+export const selectCurrentUser = (state: RootState): UserData | null =>
   state.user.currentUser;
 
 export default userSlice.reducer;

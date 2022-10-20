@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
 import Button from "components/button/button";
 import styles from "routes/components/shop/components/product/product.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategoryMap } from "redux/slices/category.slice";
 import { selectCartItems, addToCart } from "redux/slices/cart.slice";
+import { Product as ProductProps } from "redux/redux.types";
 
-export default function Product({ name, price, imageUrl, id, category }) {
+export default function Product({ name, price, imageUrl, id, category }: ProductProps) {
   const categoryMap = useSelector(selectCategoryMap);
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
@@ -29,15 +29,3 @@ export default function Product({ name, price, imageUrl, id, category }) {
     </div>
   );
 }
-
-Product.propTypes = {
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string,
-  id: PropTypes.number.isRequired,
-  category: PropTypes.string.isRequired,
-};
-
-Product.defaultProps = {
-  imageUrl: "",
-};

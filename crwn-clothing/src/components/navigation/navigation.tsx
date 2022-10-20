@@ -1,5 +1,5 @@
-import { Fragment, useCallback, useMemo } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Fragment, SyntheticEvent, useCallback, useMemo } from "react";
+import { Link, LinkProps, NavLink, Outlet } from "react-router-dom";
 import styles from "components/navigation/navigation.module.scss";
 import { ReactComponent as CrwnLogo } from "assets/crown.svg";
 import CartIcon from "routes/components/shop/components/cart/components/cart-icon/cart-icon";
@@ -12,13 +12,14 @@ const pages = [
     to: "/shop",
     children: "SHOP",
   },
-];
+] as LinkProps[];
 
 export default function Navigation() {
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
-  const handleLogout = useCallback(() => {
+  const handleLogout = useCallback((e: SyntheticEvent) => {
+    e.preventDefault();
     dispatch(logoutPending());
     // Disabled because dispatch is never updated throughout the React app lifecycle
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,6 +28,7 @@ export default function Navigation() {
   const updatedPages = useMemo(() => {
     pages[1] = currentUser
       ? {
+          to: "",
           children: "LOGOUT",
           onClick: handleLogout,
         }
@@ -34,8 +36,22 @@ export default function Navigation() {
           to: "/auth",
           children: "LOGIN",
         };
-    return pages;
+    return pages as LinkProps[];
   }, [currentUser, handleLogout]);
+
+  const renderUpdatedPages = useCallback(() => {
+    return updatedPages.map((page, index) =>
+      page.to ? (
+        <NavLink
+          className={styles["nav-link"]}
+          key={`page-${index}`}
+          {...page}
+        />
+      ) : (
+        <span className={styles["nav-link"]} key={`span-${index}`} {...page} />
+      )
+    );
+  }, [updatedPages]);
 
   return (
     <Fragment>
@@ -44,21 +60,7 @@ export default function Navigation() {
           <CrwnLogo className={styles.logo} />
         </Link>
         <div className={styles["nav-links-container"]}>
-          {updatedPages.map((page, i) =>
-            page.to ? (
-              <Link
-                className={styles["nav-link"]}
-                key={`page-${i}`}
-                {...page}
-              />
-            ) : (
-              <span
-                className={styles["nav-link"]}
-                key={`span-${i}`}
-                {...page}
-              />
-            )
-          )}
+          {renderUpdatedPages()}
           <CartIcon />
         </div>
         <CartDropdown />

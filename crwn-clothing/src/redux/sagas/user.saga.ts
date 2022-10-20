@@ -4,6 +4,8 @@ import {
   authenticateUserRejected,
   logoutFulfilled,
   logoutRejected,
+  emailRegisterPending,
+  emailLoginPending
 } from "redux/slices/user.slice";
 import {
   createAuthUserWithEmailAndPassword,
@@ -11,6 +13,7 @@ import {
   getCurrentUser,
   signInAuthWithEmailAndPassword,
   signOutAuth,
+  UserData,
 } from "utils/firebase.utils";
 import { StateError } from "redux/redux.types";
 
@@ -26,7 +29,8 @@ export function* authenticateUser(
   const [method, ...params] = methodAndParams;
 
   try {
-    let user = yield* call(method, ...params);
+    const result = yield* call(method, ...params);
+    let user = result as UserData
 
     if (!user) return;
     if (shouldDestructureUser) user = user.user;
@@ -46,13 +50,7 @@ export function* authenticateUserAsync() {
 
 export function* emailRegister({
   payload: { email, password, displayName },
-}: {
-  payload: {
-    email: string;
-    password: string;
-    displayName?: string;
-  };
-}) {
+}: ReturnType<typeof emailRegisterPending>) {
   yield* call(
     authenticateUser,
     [createAuthUserWithEmailAndPassword, email, password],
@@ -62,9 +60,7 @@ export function* emailRegister({
 
 export function* emailLogin({
   payload: { email, password },
-}: {
-  payload: { email: string; password: string };
-}) {
+}: ReturnType<typeof emailLoginPending>) {
   yield* call(authenticateUser, [
     signInAuthWithEmailAndPassword,
     email,
@@ -74,9 +70,7 @@ export function* emailLogin({
 
 export function* alertAuthenticateUserRejected({
   payload,
-}: {
-  payload: StateError;
-}) {
+}: ReturnType<typeof authenticateUserRejected>) {
   switch (payload?.code) {
     case "auth/user-not-found": {
       yield* call(alert, "User not found");

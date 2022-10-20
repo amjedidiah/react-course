@@ -1,4 +1,6 @@
-import Form from "components/form/form";
+import { ButtonProps } from "components/button/button";
+import Form, { FormValues } from "components/form/form";
+import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { emailLoginPending } from "redux/slices/user.slice";
 import styles from "routes/components/auth/auth.module.scss";
@@ -31,12 +33,15 @@ const buttons = [
     onClick: signInWithGoogleRedirect,
     buttonType: "google",
   },
-];
+] as ButtonProps[];
 
 export default function Login() {
   const dispatch = useDispatch();
 
-  const handleLogin = async ({ email, password }, setFormValues) => {
+  const handleLogin = async (
+    { email, password }: FormValues,
+    setFormValues: Dispatch<SetStateAction<FormValues>>
+  ) => {
     if (!(email && password)) {
       return alert("Please fill in all fields");
     }

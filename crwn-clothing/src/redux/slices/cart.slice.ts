@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItems, CartState, CategoryMap, RootState } from "redux/redux.types";
+import {
+  CartItems,
+  CartState,
+  CategoryMap,
+  RootState,
+} from "redux/redux.types";
 import { reverseObject } from "utils/array.util";
 
 type CartAddObject = {
@@ -7,13 +12,13 @@ type CartAddObject = {
   category: string;
   categoryMap: CategoryMap;
   cartItems: CartItems;
-}
+};
 
 type CartRemoveObject = {
   id: number;
   cartItems: CartItems;
-  removeAll: boolean;
-}
+  removeAll?: boolean;
+};
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -25,13 +30,18 @@ export const cartSlice = createSlice({
     updateCartItems: (state, action: PayloadAction<CartItems>) => {
       state.cartItems = action.payload;
     },
-    toggleCart: (state) => {
+    toggleCart: (state, action: PayloadAction<boolean>) => {
       state.isCartOpen = !state.isCartOpen;
     },
   },
 });
 
-export const addToCart = ({ id, category, categoryMap, cartItems }: CartAddObject) => {
+export const addToCart = ({
+  id,
+  category,
+  categoryMap,
+  cartItems,
+}: CartAddObject) => {
   const product = categoryMap[category].find((product) => product.id === id);
   const productExists = cartItems[id];
   const resolution = productExists
@@ -44,7 +54,11 @@ export const addToCart = ({ id, category, categoryMap, cartItems }: CartAddObjec
   return cartSlice.actions.updateCartItems({ ...cartItems, [id]: resolution });
 };
 
-export const removeFromCart = ({ id, cartItems, removeAll = false }: CartRemoveObject) => {
+export const removeFromCart = ({
+  id,
+  cartItems,
+  removeAll = false,
+}: CartRemoveObject) => {
   const productExists = cartItems[id];
   const resolution =
     productExists?.quantity === 1 || removeAll
@@ -65,7 +79,8 @@ export const selectCartIsOpen = (state: RootState) => state.cart.isCartOpen;
 
 export const selectCartItems = (state: RootState) => state.cart.cartItems;
 
-export const selectCartItemsArray = (state: RootState) => reverseObject<CartItems>(state.cart.cartItems);
+export const selectCartItemsArray = (state: RootState) =>
+  reverseObject<CartItems>(state.cart.cartItems);
 
 export const selectCartItemsCount = (state: RootState) =>
   Object.keys(state.cart.cartItems).reduce(

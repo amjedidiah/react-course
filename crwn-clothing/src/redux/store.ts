@@ -18,7 +18,7 @@ import { RootState } from "./redux.types";
 
 type ExtendedPersistConfig = PersistConfig<RootState> & {
   whitelist: (keyof RootState)[];
-}
+};
 
 // Saga-related
 const sagaMiddleware = createSagaMiddleware();
@@ -29,11 +29,14 @@ const persistConfig: ExtendedPersistConfig = {
   whitelist: ["cart"],
 };
 
-const persistedReducer = persistReducer(persistConfig, combineReducers({
-  user: userReducer,
-  cart: cartReducer,
-  category: categoryReducer,
-}));
+const persistedReducer = persistReducer(
+  persistConfig,
+  combineReducers({
+    user: userReducer,
+    cart: cartReducer,
+    category: categoryReducer,
+  })
+);
 
 export const store = configureStore({
   reducer: persistedReducer,

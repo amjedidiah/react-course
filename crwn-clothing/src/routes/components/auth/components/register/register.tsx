@@ -1,7 +1,9 @@
-import Form from "components/form/form";
+import Form, { FormValues } from "components/form/form";
 import styles from "routes/components/auth/auth.module.scss";
 import { emailRegisterPending } from "redux/slices/user.slice";
 import { useDispatch } from "react-redux";
+import { Dispatch, SetStateAction } from "react";
+import { ButtonProps } from "components/button/button";
 
 const formFields = [
   {
@@ -39,13 +41,13 @@ const buttons = [
     type: "submit",
     value: "Register",
   },
-];
+] as ButtonProps[];
 
 export default function Register() {
   const dispatch = useDispatch();
   const handleRegister = async (
-    { displayName, email, password, confirmPassword },
-    setFormValues
+    { displayName, email, password, confirmPassword }: FormValues,
+    setFormValues: Dispatch<SetStateAction<FormValues>>
   ) => {
     if (password !== confirmPassword) {
       return alert("Passwords do not match");

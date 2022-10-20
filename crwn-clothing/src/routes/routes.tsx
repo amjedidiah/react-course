@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, RouteProps } from "react-router-dom";
 import Auth from "routes/components/auth/auth";
 import Home from "routes/components/home/home";
 import Navigation from "components/navigation/navigation";
@@ -10,7 +10,7 @@ export const routes = [
   { element: <Auth />, path: "/auth" },
   { element: <Checkout />, path: "/checkout" },
   { element: <Shop />, path: "/shop/*" },
-];
+] as RouteProps[];
 
 export default function AppRoutes() {
   return (

@@ -1,8 +1,12 @@
-import Proptypes from "prop-types";
+import { Category as CategoryType } from "redux/redux.types";
 import styles from  "routes/components/home/components/categories/components/category/category.module.scss";
 import { useNavigateToCategory } from "routes/hooks/shop.hook";
 
-export default function Category({ imageUrl, title }) {
+type CategoryProps = {
+  imageUrl: string;
+} & CategoryType;
+
+export default function Category({ imageUrl, title }: CategoryProps) {
   const navigateToCategory = useNavigateToCategory(title, true);
 
   return (
@@ -18,8 +22,3 @@ export default function Category({ imageUrl, title }) {
     </div>
   );
 }
-
-Category.propTypes = {
-  imageUrl: Proptypes.string.isRequired,
-  title: Proptypes.string.isRequired,
-};

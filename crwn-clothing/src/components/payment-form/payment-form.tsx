@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from "components/button/button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./payment-form.module.scss";
-import { selectCartTotal } from "redux/slices/cart.slice";
+import { clearCart, selectCartTotal } from "redux/slices/cart.slice";
 import { selectCurrentUser } from "redux/slices/user.slice";
+import { StripeCardElement } from "@stripe/stripe-js";
+
+const ifValidCardElement = (
+  cardElement: StripeCardElement | null
+): cardElement is StripeCardElement => cardElement !== null;
 
 export default function PaymentForm() {
   const stripe = useStripe();
@@ -12,8 +17,9 @@ export default function PaymentForm() {
   const amount = useSelector(selectCartTotal);
   const currentUser = useSelector(selectCurrentUser);
   const [isPaymentOngoing, setIsPaymentOngoing] = useState(false);
+  const dispatch = useDispatch();
 
-  const paymentHandler = async (e) => {
+  const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!(stripe && elements)) {
@@ -33,11 +39,15 @@ export default function PaymentForm() {
     const {
       paymentIntent: { client_secret: clientSecret },
     } = res;
+    const cardElement = elements.getElement(CardElement);
+
+    if (!ifValidCardElement(cardElement)) return;
+
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: cardElement,
         billing_details: {
-          name: currentUser ? currentUser.displayName : "Guest",
+          name: currentUser ? (currentUser.displayName as string) : "Guest",
         },
       },
     });
@@ -47,7 +57,10 @@ export default function PaymentForm() {
     if (paymentResult.error) {
       alert(paymentResult.error.message);
     } else if (paymentResult.paymentIntent.status === "succeeded") {
+      dispatch(clearCart())
       alert("Payment succeeded");
+      // Disabled because dispatch is never updated throughout the React app lifecycle
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
   };
 

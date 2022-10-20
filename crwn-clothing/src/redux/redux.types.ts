@@ -9,11 +9,11 @@ export type AuthDetails = {
 export type Category = {
   title: string;
   items: Product[];
-}
+};
 
 export type CategoryMap = {
   [title: string]: ProductWithCategory[];
-}
+};
 
 export type CategoryState = {
   categories: Category[] | null;
@@ -39,6 +39,7 @@ export interface Product {
   imageUrl: string;
   name: string;
   price: number;
+  category: string;
 }
 
 export interface ProductWithCategory extends Product {

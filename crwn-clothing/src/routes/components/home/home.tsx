@@ -1,4 +1,3 @@
-import React from 'react'
 import Categories from 'routes/components/home/components/categories/categories'
 
 export default function Home() {

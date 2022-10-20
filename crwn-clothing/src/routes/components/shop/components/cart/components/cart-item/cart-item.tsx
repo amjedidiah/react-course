@@ -1,7 +1,11 @@
 import styles from "routes/components/shop/components/cart/components/cart-item/cart-item.module.scss";
-import PropTypes from "prop-types";
+import { Product } from "redux/redux.types";
 
-export default function CartItem({ name, quantity, price, imageUrl }) {
+export type CartItemProps = {
+  quantity: number 
+} & Product
+
+export default function CartItem({ name, quantity, price, imageUrl }: CartItemProps) {
   return (
     <div className={styles["cart-item-container"]}>
       <img src={imageUrl} alt={name} />
@@ -14,8 +18,3 @@ export default function CartItem({ name, quantity, price, imageUrl }) {
     </div>
   );
 }
-
-CartItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
-};

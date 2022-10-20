@@ -1,33 +1,40 @@
-import PropTypes from "prop-types";
 import styles from "components/button/button.module.scss";
 import classNames from "classnames";
+import { InputHTMLAttributes } from "react";
 
-const BUTTON_TYPE_CLASSES = {
-  google: "google-sign-in",
-  inverted: "inverted",
-};
+enum BUTTON_TYPE_CLASSES {
+  google = "google-sign-in",
+  inverted = "inverted",
+}
 
-const buttonTypeClass = (buttonType) =>
-  buttonType ? BUTTON_TYPE_CLASSES[buttonType] : "";
+export type ButtonProps = {
+  loading?: boolean;
+  buttonType?: keyof typeof BUTTON_TYPE_CLASSES;
+} & InputHTMLAttributes<HTMLInputElement>;
 
 export default function Button({
   buttonType,
   loading,
   value,
   className,
+  type="button",
+  onChange = () => {},
   ...otherProps
-}) {
-  const buttonTypeClassName = buttonTypeClass(buttonType);
+}: ButtonProps) {
+  const buttonTypeClassName = buttonType ? styles[BUTTON_TYPE_CLASSES[buttonType]] : "";
+
   return (
     <div className={styles["button-wrapper"]}>
       <input
         className={classNames(
           styles["button-container"],
-          styles[buttonTypeClassName],
+          buttonTypeClassName,
           className
         )}
         disabled={loading}
         value={loading ? "" : value}
+        type={type}
+        onChange={onChange}
         {...otherProps}
       />
       <div
@@ -38,15 +45,3 @@ export default function Button({
     </div>
   );
 }
-
-Button.propTypes = {
-  loading: PropTypes.bool,
-  className: PropTypes.string,
-  buttonType: PropTypes.oneOf(Object.keys(BUTTON_TYPE_CLASSES)),
-  type: PropTypes.string,
-  value: PropTypes.string,
-};
-
-Button.defaultProps = {
-  type: "button",
-};
