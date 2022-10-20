@@ -12,7 +12,7 @@ export type Category = {
 };
 
 export type CategoryMap = {
-  [title: string]: ProductWithCategory[];
+  [title: string]: Product[];
 };
 
 export type CategoryState = {
@@ -39,10 +39,6 @@ export interface Product {
   imageUrl: string;
   name: string;
   price: number;
-  category: string;
-}
-
-export interface ProductWithCategory extends Product {
   category: string;
 }
 

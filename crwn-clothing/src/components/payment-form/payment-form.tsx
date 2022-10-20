@@ -67,7 +67,7 @@ export default function PaymentForm() {
   return (
     <div className={styles["payment-form-container"]}>
       <form className={styles["form-container"]} onSubmit={paymentHandler}>
-        <h2>Credit Card Payment: </h2>
+        <h4>Credit Card Payment </h4>
         <CardElement />
         <Button
           className={styles["payment-button"]}

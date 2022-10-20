@@ -1,11 +1,5 @@
-import { useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  addToCart,
-  removeFromCart,
-  selectCartItems,
-} from "redux/slices/cart.slice";
-import { selectCategoryMap } from "redux/slices/category.slice";
+import { CartContext } from "context/cart.context";
+import { useCallback, useContext } from "react";
 import styles from "routes/components/checkout/components/checkout-item/checkout-item.module.scss";
 import { CartItemProps } from "routes/components/shop/components/cart/components/cart-item/cart-item";
 
@@ -17,21 +11,19 @@ export default function CheckoutItem({
   quantity,
   category,
 }: CartItemProps) {
-  const categoryMap = useSelector(selectCategoryMap);
-  const cartItems = useSelector(selectCartItems);
-  const dispatch = useDispatch();
+  const { removeFromCart, addToCart } = useContext(CartContext);
 
   const removeItemFromCart = useCallback(
-    () => dispatch(removeFromCart({ id, cartItems })),
-    [cartItems, dispatch, id]
+    () => removeFromCart(id),
+    [id, removeFromCart]
   );
   const removeItemsFromCart = useCallback(
-    () => dispatch(removeFromCart({ id, cartItems, removeAll: true })),
-    [cartItems, dispatch, id]
+    () => removeFromCart(id, true),
+    [id, removeFromCart]
   );
   const addItemToCart = useCallback(
-    () => dispatch(addToCart({ id, category, categoryMap, cartItems })),
-    [cartItems, category, categoryMap, dispatch, id]
+    () => addToCart(id, category),
+    [addToCart, category, id]
   );
 
   return (
