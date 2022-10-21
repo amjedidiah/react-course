@@ -4,14 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCategoryMap } from "redux/slices/category.slice";
 import { selectCartItems, addToCart } from "redux/slices/cart.slice";
 import { Product as ProductProps } from "redux/redux.types";
+import { useCallback, memo } from "react";
 
-export default function Product({ name, price, imageUrl, id, category }: ProductProps) {
+export function Product({
+  name,
+  price,
+  imageUrl,
+  id,
+  category,
+}: ProductProps) {
   const categoryMap = useSelector(selectCategoryMap);
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
-  const addItemToCart = () =>
-    dispatch(addToCart({ id, category, categoryMap, cartItems }));
+  const addItemToCart = useCallback(
+    () => dispatch(addToCart({ id, category, categoryMap, cartItems })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cartItems, category, categoryMap, id]
+  );
 
   return (
     <div className={styles["product-card-container"]}>
@@ -29,3 +39,5 @@ export default function Product({ name, price, imageUrl, id, category }: Product
     </div>
   );
 }
+
+export default memo(Product);

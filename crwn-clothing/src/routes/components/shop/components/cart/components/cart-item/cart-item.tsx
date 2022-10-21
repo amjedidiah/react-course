@@ -1,3 +1,4 @@
+import {memo} from "react";
 import styles from "routes/components/shop/components/cart/components/cart-item/cart-item.module.scss";
 import { Product } from "redux/redux.types";
 
@@ -5,7 +6,7 @@ export type CartItemProps = {
   quantity: number 
 } & Product
 
-export default function CartItem({ name, quantity, price, imageUrl }: CartItemProps) {
+export function CartItem({ name, quantity, price, imageUrl }: CartItemProps) {
   return (
     <div className={styles["cart-item-container"]}>
       <img src={imageUrl} alt={name} />
@@ -18,3 +19,5 @@ export default function CartItem({ name, quantity, price, imageUrl }: CartItemPr
     </div>
   );
 }
+
+export default memo(CartItem);

@@ -42,7 +42,7 @@ export const UserProvider = ({ children }) => {
         dispatch({ type: userActionTypes.SET_CURRENT_USER, payload: user });
       });
 
-    return unsubscribe;
+    return unsubscribe();
   }, []);
 
   return (

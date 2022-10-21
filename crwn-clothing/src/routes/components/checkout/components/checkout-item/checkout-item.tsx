@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addToCart,
@@ -9,7 +9,7 @@ import { selectCategoryMap } from "redux/slices/category.slice";
 import styles from "routes/components/checkout/components/checkout-item/checkout-item.module.scss";
 import { CartItemProps } from "routes/components/shop/components/cart/components/cart-item/cart-item";
 
-export default function CheckoutItem({
+export function CheckoutItem({
   id,
   name,
   imageUrl,
@@ -23,15 +23,18 @@ export default function CheckoutItem({
 
   const removeItemFromCart = useCallback(
     () => dispatch(removeFromCart({ id, cartItems })),
-    [cartItems, dispatch, id]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cartItems, id]
   );
   const removeItemsFromCart = useCallback(
     () => dispatch(removeFromCart({ id, cartItems, removeAll: true })),
-    [cartItems, dispatch, id]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cartItems, id]
   );
   const addItemToCart = useCallback(
     () => dispatch(addToCart({ id, category, categoryMap, cartItems })),
-    [cartItems, category, categoryMap, dispatch, id]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cartItems, category, categoryMap, id]
   );
 
   return (
@@ -56,3 +59,5 @@ export default function CheckoutItem({
     </div>
   );
 }
+
+export default memo(CheckoutItem);

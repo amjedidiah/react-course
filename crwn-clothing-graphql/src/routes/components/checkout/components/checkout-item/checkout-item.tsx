@@ -1,9 +1,9 @@
 import { CartContext } from "context/cart.context";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, memo } from "react";
 import styles from "routes/components/checkout/components/checkout-item/checkout-item.module.scss";
 import { CartItemProps } from "routes/components/shop/components/cart/components/cart-item/cart-item";
 
-export default function CheckoutItem({
+export function CheckoutItem({
   id,
   name,
   imageUrl,
@@ -48,3 +48,5 @@ export default function CheckoutItem({
     </div>
   );
 }
+
+export default memo(CheckoutItem);

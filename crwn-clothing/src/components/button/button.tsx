@@ -1,6 +1,6 @@
 import styles from "components/button/button.module.scss";
 import classNames from "classnames";
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, memo } from "react";
 
 enum BUTTON_TYPE_CLASSES {
   google = "google-sign-in",
@@ -12,7 +12,7 @@ export type ButtonProps = {
   buttonType?: keyof typeof BUTTON_TYPE_CLASSES;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export default function Button({
+export function Button({
   buttonType,
   loading,
   value,
@@ -45,3 +45,5 @@ export default function Button({
     </div>
   );
 }
+
+export default memo(Button);

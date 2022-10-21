@@ -1,10 +1,10 @@
 import Button from "components/button/button";
 import styles from "routes/components/shop/components/product/product.module.scss";
 import { Product as ProductProps } from "context/category.context";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, memo } from "react";
 import { CartContext } from "context/cart.context";
 
-export default function Product({
+export function Product({
   name,
   price,
   imageUrl,
@@ -34,3 +34,5 @@ export default function Product({
     </div>
   );
 }
+
+export default memo(Product);

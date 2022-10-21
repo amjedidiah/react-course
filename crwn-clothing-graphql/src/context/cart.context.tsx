@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useMemo } from "react";
+import { createContext, useState, useContext, useMemo, useCallback } from "react";
 import { CategoryContext, ContextProvider, Product } from "context/category.context";
 import { reverseObject } from "utils/array.util";
 
@@ -27,7 +27,7 @@ export const CartProvider = ({ children }: ContextProvider) => {
   const [isCartOpen, toggleCart] = useState(false);
   const { categoryMap } = useContext(CategoryContext);
 
-  const addToCart = (id: number, category: string) => {
+  const addToCart = useCallback( (id: number, category: string) => {
     const product = categoryMap[category].find(
       (product) => product.id === id
     );
@@ -49,9 +49,9 @@ export const CartProvider = ({ children }: ContextProvider) => {
         },
       });
     }
-  };
+  }, [cartItems, categoryMap]);
 
-  const removeFromCart = (id: number, removeAll = false) => {
+  const removeFromCart = useCallback( (id: number, removeAll = false) => {
     const productExists = cartItems[id];
     if (productExists.quantity === 1 || removeAll) {
       setCartItems({ ...cartItems, [id]: undefined });
@@ -64,7 +64,7 @@ export const CartProvider = ({ children }: ContextProvider) => {
         },
       });
     }
-  };
+  }, [cartItems]);
 
   const clearCart = () => setCartItems({});
 

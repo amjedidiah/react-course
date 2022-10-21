@@ -1,7 +1,5 @@
+import { gql, useQuery } from "@apollo/client";
 import { createContext, useEffect, useState } from "react";
-// import PRODUCTS from "data/shop-data"
-// import { addCollectionAndDocuments } from "utils/firebase.utils";
-import { getCategoriesAndDocuments } from "utils/firebase.utils";
 
 export interface Product {
   id: number;
@@ -24,6 +22,25 @@ export type ContextProvider = {
   children: React.ReactNode;
 };
 
+export type CollectionData = {
+  collections: Category[];
+};
+
+const COLLECTIONS = gql`
+  query GetCollections {
+    collections {
+      id
+      title
+      items {
+        id
+        name
+        price
+        imageUrl
+      }
+    }
+  }
+`;
+
 export const CategoryContext = createContext({
   categoryMap: {} as CategoryMap,
   categoryIsLoading: true,
@@ -32,34 +49,35 @@ export const CategoryContext = createContext({
 export const CategoryProvider = ({ children }: ContextProvider) => {
   const [categoryMap, setCategoryMap] = useState<CategoryMap>({});
   const [categoryIsLoading, setCategoryIsLoading] = useState(true);
+  const { loading, data } = useQuery<CollectionData>(COLLECTIONS);
 
   useEffect(() => {
-    const getCategories = async () => {
-      const categories = await getCategoriesAndDocuments("categories");
-      const map = categories.reduce((acc: CategoryMap, category: Category) => {
-        const { title, items } = category;
-        acc[title.toLowerCase()] = items.map((item) => ({
-          ...item,
-          category: title.toLowerCase(),
-        }));
-        return acc;
-      }, {});
-      setCategoryMap(map);
-      setCategoryIsLoading(false);
-    };
-    getCategories();
+    if (data) {
+      const collectionMap = data?.collections.reduce(
+        (acc: CategoryMap, category: Category) => {
+          const { title, items } = category;
+          acc[title.toLowerCase()] = items.map((item) => ({
+            ...item,
+            category: title.toLowerCase(),
+          }));
+          return acc;
+        },
+        {}
+      );
+
+      setCategoryMap(collectionMap!);
+      setCategoryIsLoading(loading);
+    }
 
     /* Ought To Be Called One Time On The Backend */
     // const addCollection = async () => {
     //   await addCollectionAndDocuments('categories', PRODUCTS);
     // }
     // addCollection();
-  }, []);
+  }, [data, loading]);
 
   return (
-    <CategoryContext.Provider
-      value={{ categoryMap, categoryIsLoading }}
-    >
+    <CategoryContext.Provider value={{ categoryMap, categoryIsLoading }}>
       {children}
     </CategoryContext.Provider>
   );

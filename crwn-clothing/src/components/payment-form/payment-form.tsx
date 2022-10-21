@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from "components/button/button";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,7 @@ export default function PaymentForm() {
   const [isPaymentOngoing, setIsPaymentOngoing] = useState(false);
   const dispatch = useDispatch();
 
-  const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
+  const paymentHandler = useCallback( async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!(stripe && elements)) {
@@ -59,10 +59,10 @@ export default function PaymentForm() {
     } else if (paymentResult.paymentIntent.status === "succeeded") {
       dispatch(clearCart())
       alert("Payment succeeded");
-      // Disabled because dispatch is never updated throughout the React app lifecycle
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
-  };
+    // Disabled because dispatch is never updated throughout the React app lifecycle
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [amount, currentUser, elements, stripe]);
 
   return (
     <div className={styles["payment-form-container"]}>

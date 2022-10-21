@@ -13,7 +13,8 @@ export default function CartDropdown() {
   const goToCheckout = useCallback(() => {
     toggleCart(true);
     navigate("/checkout")
-  }, [navigate, toggleCart]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toggleCart]);
 
   return (
     <div

@@ -1,6 +1,6 @@
 import { ButtonProps } from "components/button/button";
 import Form, { FormValues } from "components/form/form";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { emailLoginPending } from "redux/slices/user.slice";
 import styles from "routes/components/auth/auth.module.scss";
@@ -38,7 +38,7 @@ const buttons = [
 export default function Login() {
   const dispatch = useDispatch();
 
-  const handleLogin = async (
+  const handleLogin = useCallback( async (
     { email, password }: FormValues,
     setFormValues: Dispatch<SetStateAction<FormValues>>
   ) => {
@@ -48,7 +48,9 @@ export default function Login() {
 
     dispatch(emailLoginPending({ email, password }));
     setFormValues({});
-  };
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles["auth-child-container"]}>

@@ -1,3 +1,4 @@
+import {memo} from "react";
 import { Category as CategoryType } from "context/category.context";
 import styles from  "routes/components/home/components/categories/components/category/category.module.scss";
 import { useNavigateToCategory } from "routes/hooks/shop.hook";
@@ -6,7 +7,7 @@ type CategoryProps = {
   imageUrl: string;
 } & CategoryType;
 
-export default function Category({ imageUrl, title }: CategoryProps) {
+export function Category({ imageUrl, title }: CategoryProps) {
   const navigateToCategory = useNavigateToCategory(title, true);
 
   return (
@@ -22,3 +23,5 @@ export default function Category({ imageUrl, title }: CategoryProps) {
     </div>
   );
 }
+
+export default memo(Category);

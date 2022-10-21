@@ -1,12 +1,12 @@
 import styles from "components/form/components/form-input/form-input.module.scss";
 import classNames from "classnames";
-import { InputHTMLAttributes } from "react";
+import { memo, InputHTMLAttributes } from "react";
 
 export type FormInputProps = {
   label: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export default function FormInput({
+export function FormInput({
   id,
   label,
   value = "",
@@ -33,3 +33,5 @@ export default function FormInput({
     </div>
   );
 }
+
+export default memo(FormInput);

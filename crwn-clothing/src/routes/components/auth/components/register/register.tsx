@@ -2,7 +2,7 @@ import Form, { FormValues } from "components/form/form";
 import styles from "routes/components/auth/auth.module.scss";
 import { emailRegisterPending } from "redux/slices/user.slice";
 import { useDispatch } from "react-redux";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import { ButtonProps } from "components/button/button";
 
 const formFields = [
@@ -45,7 +45,7 @@ const buttons = [
 
 export default function Register() {
   const dispatch = useDispatch();
-  const handleRegister = async (
+  const handleRegister = useCallback(async (
     { displayName, email, password, confirmPassword }: FormValues,
     setFormValues: Dispatch<SetStateAction<FormValues>>
   ) => {
@@ -55,7 +55,9 @@ export default function Register() {
 
     dispatch(emailRegisterPending({ displayName, email, password }));
     setFormValues({});
-  };
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles["auth-child-container"]}>

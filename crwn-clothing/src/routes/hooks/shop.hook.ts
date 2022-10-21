@@ -10,5 +10,7 @@ export const useNavigateToCategory = (
     if (shouldNavigate) {
       navigate(`/shop/${title.toLowerCase()}`);
     }
-  }, [navigate, shouldNavigate, title]);
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ shouldNavigate, title]);
 };

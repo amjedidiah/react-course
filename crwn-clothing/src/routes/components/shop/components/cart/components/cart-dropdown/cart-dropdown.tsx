@@ -22,7 +22,7 @@ export default function CartDropdown() {
     navigate("/checkout")
     // Disabled because dispatch is never updated throughout the React app lifecycle
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate]);
+  }, []);
 
   return (
     <div

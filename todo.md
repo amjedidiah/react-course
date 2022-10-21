@@ -15,5 +15,3 @@
 - [ ] [Read up Styled Components documentation](https://styled-components.com/docs/basics)
 
 ## Temp
-
-- `yarn add @apollo/client graphql` to install Apollo Client and GraphQL

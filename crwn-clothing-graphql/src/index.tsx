@@ -6,17 +6,25 @@ import reportWebVitals from "reportWebVitals";
 import { CartProvider } from "context/cart.context";
 import { UserProvider } from "context/user.context";
 import { CategoryProvider } from "context/category.context";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "https://crwn-clothing.com/",
+  cache: new InMemoryCache(),
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <CategoryProvider>
-        <CartProvider>
-          <App />
-        </CartProvider>
-      </CategoryProvider>
-    </UserProvider>
+    <ApolloProvider client={client}>
+      <UserProvider>
+        <CategoryProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </CategoryProvider>
+      </UserProvider>
+    </ApolloProvider>
   </React.StrictMode>
 );
 
