@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, RouteProps } from "react-router-dom";
 import Spinner from "components/spinner/spinner";
 import { Suspense, lazy } from "react";
 import Navigation from "components/navigation/navigation";
+import Home from "routes/components/home/home";
 
 const Auth = lazy(() => import("routes/components/auth/auth"));
-const Home = lazy(() => import("routes/components/home/home"));
 const Shop = lazy(() => import("routes/components/shop/shop"));
 const Checkout = lazy(() => import("routes/components/checkout/checkout"));
 

@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-// import { getAnalytics, logEvent } from "firebase/analytics";
 import {
   getAuth,
   signInWithRedirect,
@@ -46,15 +45,8 @@ const firebaseConfig = {
   measurementId: "G-0MH8Z2MXSP",
 };
 
-// Initialize Firebase
 initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// logEvent(analytics, 'notification_received', {
-//     notification_id: '123',
-//     notification_type: 'email'
-// });
 
-// Set Auth Provider
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
 
@@ -87,7 +79,6 @@ export const getCurrentUser = (): Promise<User | null> =>
     );
   });
 
-// Database
 export const db = getFirestore();
 export const createUserFromAuth = async (
   userAuth: User
