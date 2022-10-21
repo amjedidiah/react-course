@@ -1,5 +1,5 @@
 .product-card-container {
-  width: 100%;
+  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -17,6 +17,12 @@
     width: 100%;
     margin-top: -90px;
     display: none;
+
+    @media screen and (max-width: 800px) {
+      display: block;
+      opacity: 0.9;
+      padding: 0 10px;
+    }
   }
 
   &:hover {
@@ -26,6 +32,16 @@
 
     .product-button {
       display: flex;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+
+    &:hover {
+      img {
+        opacity: unset;
+      }
     }
   }
 
