@@ -491,3 +491,5 @@ const MyComponent = () => {
 - [ ] [React Interview Questions – Interview Prep with Answers and Examples](https://www.freecodecamp.org/news/react-interview-questions-and-answers/)
 
 - [ ] [React Interview Questions](https://www.interviewbit.com/react-interview-questions/#react-mcq-questions)
+
+- [ ] [ZTM React Interview Questions & Answers](https://github.com/sudheerj/reactjs-interview-questions)
