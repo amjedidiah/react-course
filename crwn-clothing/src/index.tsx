@@ -9,6 +9,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { persistor, store } from "redux/store";
 import { stripePromise } from "utils/stripe.util";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { isProduction } from "utils/env.util";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
@@ -23,5 +24,5 @@ root.render(
   </React.StrictMode>
 );
 
-reportWebVitals(console.log);
+if(!isProduction) reportWebVitals(console.log);
 serviceWorkerRegistration.register();

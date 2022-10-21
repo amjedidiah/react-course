@@ -24,6 +24,7 @@ import {
   writeBatch,
 } from "firebase/firestore";
 import { Category } from "redux/redux.types";
+import { isProduction } from "./env.util";
 
 type ObjectToAdd = {
   title: string;
@@ -100,7 +101,7 @@ export const createUserFromAuth = async (
       });
       await updateProfile(auth.currentUser as User, { displayName });
     } catch (error) {
-      console.log("error", error);
+      if(!isProduction) console.log("error", error);
     }
   }
 

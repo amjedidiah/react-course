@@ -16,6 +16,7 @@ import {
   UserData,
 } from "utils/firebase.utils";
 import { StateError } from "redux/redux.types";
+import { isProduction } from "utils/env.util";
 
 type AdditionalUserData = {
   displayName?: string;
@@ -39,7 +40,7 @@ export function* authenticateUser(
     yield* call(createUserFromAuth, user);
     yield* put(authenticateUserFulfilled(user));
   } catch (error) {
-    console.log("error", error);
+    if(!isProduction) console.log("error", error);
     yield* put(authenticateUserRejected(error as StateError));
   }
 }
