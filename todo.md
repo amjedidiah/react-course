@@ -2,6 +2,10 @@
 
 - [ ] Add Tests for Crwn-Clothing
 
+- [ ] Update all forms to use [`react-hook-form`](https://react-hook-form.com/)
+
+- [ ] [Redux Toolkit’s new listener middleware vs. Redux-Saga](https://blog.logrocket.com/redux-toolkits-new-listener-middleware-vs-redux-saga/)
+
 - [ ] Research for and get the CSS frameworks with the best implementation of the semantic markup.
 
 - [ ] Take GatsBy course on Udemy, possibly from ZTM
