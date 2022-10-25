@@ -1,6 +1,10 @@
 # ToDo
 
+- [ ] Add Tests for Crwn-Clothing
+
 - [ ] Research for and get the CSS frameworks with the best implementation of the semantic markup.
+
+- [ ] Take GatsBy course on Udemy, possibly from ZTM
 
 - [ ] [Read up React documentation](https://reactjs.org/docs/getting-started.html)
 
