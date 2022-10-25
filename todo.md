@@ -18,10 +18,23 @@
 
 ## Temp
 
+- Testing Reducers: test as pure function
+
+- Testing Actions
+
 ```tsx
 import configureStore from "redux-mock-store";
 import thunkMiddleware from "redux-thunk";
 
 const mockStore = configureStore([thunkMiddleware]);
 
+it("handles requesting robots API", () => {
+  const store = mockStore();
+  store.dispatch(requestRobots());
+  const action = store.getActions();
+  const expectedAction = {
+    type: REQUEST_ROBOTS_PENDING,
+  };
+  expect(action[0]).toEqual(expectedAction);
+});
 ```

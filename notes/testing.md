@@ -52,3 +52,7 @@ This is a measure of how much of the code is covered by the tests. e.g: Istanbul
 ## Resources
 
 - [ ] [Jest Cheat Sheet](https://github.com/sapegin/jest-cheat-sheet)
+
+- [Nock](https://www.npmjs.com/package/nock): HTTP server mocking and expectations library for Node.js
+
+- [Supertest](https://www.npmjs.com/package/supertest): HTTP assertions made easy via superagent
