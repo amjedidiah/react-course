@@ -2,40 +2,37 @@ import { ChangeEvent, useEffect, useState, useMemo } from "react";
 import MonsterList from "./components/monsters/monster-list";
 import SearchBox from "./components/search-box/search-box";
 import "./App.css";
-import { fetchData } from "./utils";
+import fetchMonsters from "./util/fetch-monsters/fetch-monsters";
+import filterMonsters from "./util/filter-monsters/filter-monsters";
 
 export type Monster = {
-    id: number;
-    name: string;
-    email: string;
-}
+  id: number;
+  name: string;
+  email: string;
+};
 
 export default function App() {
   const [monsters, setMonsters] = useState<Monster[] | null>(null);
+  const [monstersMessage, setMonstersMessage] = useState(
+    "fetching monsters..."
+  );
   const [searchString, setSearchString] = useState("");
-  const filteredMonsters = useMemo(() => {
-    return monsters
-      ? monsters.filter((monster) =>
-          (monster?.name || "").toLowerCase().includes(searchString)
-        )
-      : [];
-  }, [monsters, searchString]);
+  const filteredMonsters = useMemo(
+    () => filterMonsters(monsters, searchString),
+    [monsters, searchString]
+  );
 
   const search = (e: ChangeEvent<HTMLInputElement>): void =>
     setSearchString(e.target.value.toLowerCase());
 
   useEffect(() => {
-    const fetchMonsters = async () => {
-      const monsters = await fetchData<Monster[]>("https://jsonplaceholder.typicode.com/users");
-      setMonsters(monsters);
-    }
-
-    fetchMonsters();
+    fetchMonsters().then(({ data, message }) => {
+      setMonsters(data);
+      setMonstersMessage(message);
+    });
   }, []);
 
-  if (!monsters) {
-    return null;
-  }
+  if (!monsters) return <p>{monstersMessage}</p>;
 
   return (
     <div className="App">

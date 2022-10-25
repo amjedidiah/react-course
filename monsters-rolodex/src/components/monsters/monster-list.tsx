@@ -1,21 +1,21 @@
 import Monster from "./components/monster";
 import "./monster-list.css";
-import { Monster as MonsterType } from "../../App"
+import { Monster as MonsterType } from "../../App";
 
 type MonsterListProps = {
-    filteredMonsters: MonsterType[];
-}
+  filteredMonsters: MonsterType[];
+};
 
 export default function MonsterList({ filteredMonsters }: MonsterListProps) {
-    if (!filteredMonsters.length) {
-        return <h1>No monsters to display</h1>;
-    }
+  if (!filteredMonsters.length) {
+    return <h1>No monsters to display</h1>;
+  }
 
-    return (
-        <div className="card-list">
-            {filteredMonsters.map((monster) => (
-                <Monster key={monster.id} {...monster} />
-            ))}
-        </div>
-    );
+  return (
+    <div className="card-list" data-testid="monsterlist">
+      {filteredMonsters.map((monster) => (
+        <Monster key={monster.id} {...monster} />
+      ))}
+    </div>
+  );
 }

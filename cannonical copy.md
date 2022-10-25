@@ -1,61 +1,33 @@
-# Notes
+# Canonical Written Interview
 
-- Open-source
+## Education
 
-## Me
-
-- Productive
-- Care about performance,quality and UX
-
-## Content
-
-- My Interests
-- My ambitions
-- My achievements to date
-- Who I am
-- What's important to me
-- How I communicate
-
-## Questions
-
-### Education
-
-#### Question 1
+### How did you fare in high school mathematics, physical sciences and computing? Which were your strengths and which most enjoyable? How did you rank, competitively, in these subjects?
 
 My parents noticed my interest in Mathematics at a young age.
-
 My mother encouraged me by holding extra curriculum classes when I got home after school.
-
 When she was not available, she enlisted the help of lesson teachers.
-
 My mother told me that she was very good with Mathematics when she was younger, and my father said his father, my grandfather, taught Arithmetic in the primary school in their hometown.
 
 My interest grew into competence.
-
 Soon enough, I was representing my school in Mathematics competitions. My competence carried on into High School, where I competed at state and national levels in competitions like the National International Mathematics Olympiad (NIMO), the Mathematics Association of Nigeria(MAN) Competition, and Cowbellpedia, among others.
-
 I mostly was king of Math in my set for my six years in High School, crying a couple of times when I fell short of 100%.
-
 I was asked on multiple occasions to explain a Math concept to students in a class above me.
-
 I finally scored an A in Mathematics in the West African Senior School Certificate Examination (WASSCE).
 
-I wasn't good enough to go to competitions in Physical Sciences, Physics, and Chemistry. However, I was always among the top 5 students in my class in Physics, and in my final year in high school, I was the highest-scoring student in the Physics mock exam in my set.
-
+I wasn't good enough to go to competitions in Physical Sciences, Physics, and Chemistry.
+However, I was always among the top 5 students in my class in Physics, and in my final year in high school, I was the highest-scoring student in the Physics mock exam in my class.
 For Chemistry, I mostly performed averagely.
 
 My high school did not have enough computing facilities.
-
 However, my interest in computing was encouraged by my father's gadgets at home, the video games I played on them, and the ones I played on my friend's computers and consoles when I was on holiday.
 
-#### Question 2
+### What sort of high school student were you? Outside of required work, what were your interests and hobbies?  What would your high school peers remember you for, if we asked them?
 
 I was a quiet and reserved student for the most part, well-behaved and exemplary.
-
 It was no surprise when I got named Senior Prefect Boy in the 3rd semester of my penultimate year in high school.
 
 Outside of required work, I helped organize the school's football league after my elder brother, who started it, left for university.
-
 After a year, I resigned as the league's coordinator to coach one of the teams I felt had the potential to win the league title but were doing poorly.
 
 I was not actively involved in sports, but I participated in an 800m race in the last inter-house sports event I witnessed.
@@ -66,25 +38,21 @@ In my final year in high school, I was a member of the school's Chapel leadershi
 
 My former schoolmates would remember me for my competence in Mathematics and general school work, my position as Senior prefect, my reservedness, the competitions I went to and the short stories I wrote in junior secondary school.
 
-#### Question 3
+### In languages and the arts at high school, what were your strongest subjects and how did you rank in those among your school peers?
 
 Languages and the arts were not my strong suits.
-
 I wrote stories in Junior secondary school, but I never got to finish, let alone publish anyone.
 
 I had a strong background in French coming from primary school, but because I did not like my French teacher in junior secondary school, I lost interest in French and, in no time, lost competence in both written and spoken French.
-
 I failed woefully in my native language, Igbo, until high school, where I scored barely enough to pass and ended up with a C6 in the WASSCE.
 
 I was in the school choir in primary school and played the recorder, but all of that went out the window when I got to junior secondary school.
-
 I went to 2 debate competitions, in which my school did not win any.
-
 I scored reasonably high on my essays, so I must have been good to a reasonable extent.
 
 All in all, for the Arts and Languages, there was good potential and good Primary school background that I did not just work on improving, and in time, I became incompetent with those gifts and talents.
 
-#### Question 4
+### Please outline some high school achievements considered exceptional by peers and staff members
 
 - Senior Prefect Boy
 
@@ -98,52 +66,44 @@ All in all, for the Arts and Languages, there was good potential and good Primar
 
 - Chapel Leader
 
-#### Question 5
+### Which degree and university did you choose, and why?
 
 I chose the University of Nigeria, Nsukka, because both parents attended the school.
-
 I started with Dental Surgery but switched to Electronic Engineering after my first year to pursue my passion for computing and programming.
 
-#### Question 6
+### Which university courses did you perform best at? How did you rank in your degree?
 
 I did not perform nearly as well in my years at university.
-
 I even had some carry-overs and repeated my 3rd year in Engineering.
-
 Due to the nationwide strike that affected government-owned universities in Nigeria, I still don't know what rank I finished in school.
 
-#### Question 7
+### Outside of class, what were your interests and where did you spend your time?
 
 Outside of class, I spent time, initially in church, later with my fraternity brothers, and much later, towards the end, programming.
 
-#### Question 8
+### What did you achieve at university that you consider exceptional
 
 I founded a startup with four other students in my class in my 3rd year at the university.
-
 Sadly, it did not do so well, and we had to shut it down after a couple of months.
 
-In my final year, I hosted one of the biggest parties in school.
+In my final year, I hosted one of the biggest events in school.
 
-### Web Engineering Experience
+## Web Engineering Experience
 
-#### Question 1: Semantic Markup
+### What does semantic markup mean?
 
 Semantic markup is a way of writing and structuring your HTML (Hypertext Markup Language) so that it reinforces the semantics, or meaning, of the content rather than its appearance.
-
 In other words, HTML only focuses on the structure of the page and CSS focuses on the style of the content of the web page.
 
 For instance, when you look at a web page, you can clearly identify a paragraph.
-
 A `<p>` tag indicates that an enclosed text is a paragraph. Again, since the `p` tag is both semantic and presentational, users know this is a paragraph, and browsers know how to display it.
-
 On the other hand, if we use `<div>` or `<span>` in a text, it doesn’t provide any additional meaning to the markup because they are not semantic. Instead, they define only how the text would look like.
 
-##### HTML5 & Semantics
+#### HTML5 & Semantics
 
 A semantic element clearly describes its meaning(its purpose and content type) to both the browser and the developer, by having its own HTML tag.
 
 HTML included semantic markup since its inception. However, HTML5 introduced even more semantic tags such as `<section>`, `<article>`, `<footer>`, `<nav>`, `<aside>`, `<mark>`, and `<time>`, making it clearer what information is on the webpage and what it means.
-
 This is way better than mashing up web pages with `<div>` and `<span>` tags, which are non-semantic and only used to group elements together.
 
 The following HTML5 tags can be used in place of `<div>` tags to break a page's content into meaningful parts:
@@ -164,18 +124,16 @@ The following HTML5 tags can be used in place of `<div>` tags to break a page's 
 
 ![HTML5 Semantic Markup](https://teamcodearchitects.com/wp-content/uploads/2021/06/HTML-semantic-page-structure.png)
 
-##### Benefits of Semantic Markup
+#### Benefits of Semantic Markup
 
 1. Accessibility
 
    Semantic markup can help humans(without disabilities) and different assistive applications and devices(such as text-to-speech translators, text size controls, colour and contrast controls, etc), understand the content structure, the relationship among page elements, and the nature of content inside an element and interpret these to people with disabilities.
-
    Thus, ensuring equal access for people with disabilities and providing more options to customize their experience.
 
 2. Search Engine Optimization(SEO)
 
    Semantic markup provides better instructions for web(search engine) crawlers when scanning pages for content, by telling them what important content is on the page.
-
    This can result in search engines ranking the page using the most relevant and meaningful content on the page and ensuring that the right pages are delivered for the right queries.
 
 3. Maintainability
@@ -186,18 +144,11 @@ The following HTML5 tags can be used in place of `<div>` tags to break a page's 
 
    Semantic markup helps us think about the structure of dynamic data, and to choose the titles' hierarchy properly.
 
-##### Resources
-
-- [HTML5 Semantic Structure](https://teamcodearchitects.com/blog/html-semantic-structure/)
-
-- [What Is Semantic Markup and Why You Should Use It](https://medium.com/codex/what-is-semantic-markup-and-why-you-should-use-it-44777543c29c)
-
-#### Question 2: Box Model
+### What is the box model?
 
 > All HTML elements can be considered boxes
 
 In CSS, the term _box model_ is used when talking about design and layout.
-
 The CSS box model is essentially a container that wraps around every HTML element. It consists of: _margins_, _borders_, _padding_, and the actual _content_. The image below illustrates the box model:
 
 ![CSS Box Model](https://miro.medium.com/max/1400/1*E_YuB8x1B3T3h6PIJ_I9qQ.png)
@@ -212,7 +163,7 @@ The CSS box model is essentially a container that wraps around every HTML elemen
 
 > The box model allows us to add a border around elements, and to define space between elements.
 
-##### Width and Height of an Element
+#### Width and Height of an Element
 
 By default, a block-level element will take up the full width available (stretches out to the left and right as far as it can).
 
@@ -270,17 +221,13 @@ The width of the div element is 320px.
 
 The height of the div element is 220px.
 
-##### Resources 2
-
-- [CSS Box Model](https://www.w3schools.com/css/css_boxmodel.asp)
-
-#### Question 3: How would you save a login session?
+### How would you save a login session?
 
 > A session is a temporary interaction between a user and a server. It is used to store information about a user and their interaction with the server.
 
 A session is created on the server and a unique session ID is assigned to the user, with a set time for expiration. The session ID is stored in a cookie on the user's computer. The session ID is used to retrieve the user's information from the server. This way the user can be recognized on subsequent requests, and the user cannot be impersonated by another user by altering the cookie on the client's computer.
 
-##### How to create a session?
+#### How to save a session?
 
 - Create a session ID
 
@@ -288,13 +235,13 @@ A session is created on the server and a unique session ID is assigned to the us
 
 - Store the session data on the server
 
-##### How to destroy a session?
+#### How to destroy a session?
 
 - Delete the session data on the server
 
 - Delete the session ID cookie
 
-#### Question 4: What is your approach to debugging a web page?
+### What is your approach to debugging a web page?
 
 > Debugging is the process of finding and fixing errors within files and scripts that make up a web page.
 
@@ -306,7 +253,7 @@ The debugging tools are a special UI in developer tools that makes debugging muc
 
 Thus allowing one to trace the code step by step to see what exactly is going on.
 
-##### Debugging The Web Page Design
+#### Debugging The Web Page Design
 
 Navigate to the **Inspect Tab** by pressing `F12` or `Ctrl + Shift + I` on Windows, or `Cmd + Option + I` on Mac, or by right-clicking on the web page and selecting **Inspect**.
 
@@ -342,7 +289,7 @@ To debug the CSS:
 
 ![CSS Debugging](https://ostraining.com/wp-content/uploads/images/webdesign/chrome-dev-tools/5.jpg)
 
-##### Debugging JavaScript Code
+#### Debugging JavaScript Code
 
 Here, the debugging process can be divided into 3 steps:
 
@@ -386,17 +333,9 @@ Other issues that can be debugged using the developer tools include, but are not
 
 - **Application** — The application tab shows all service workers and other background processes. It can be used to find and fix issues with service workers.
 
-##### Resources 4
+## Software Engineering Experience
 
-- [Debugging Your Website with Chrome Developer Tools](https://ostraining.com/blog/webdesign/chrome-dev-tools/)
-
-- [Debugging in the browser](https://javascript.info/debugging-chrome)
-
-- [How to Perform Online Debugging for Websites?](https://www.browserstack.com/guide/online-debugging-for-websites)
-
-### Software Engineering Experience
-
-#### What kinds of software projects have you worked on before? Which operating systems, development environments, languages, and databases?
+### What kinds of software projects have you worked on before? Which operating systems, development environments, languages, and databases?
 
 On a professional level, I have worked on the following projects:
 
@@ -426,7 +365,7 @@ I have also worked on personal projects using the following technologies:
 
 MongoDB, Express, Node, and Heroku.
 
-#### Would you describe yourself as a strong coder? Why?
+### Would you describe yourself as a strong coder? Why?
 
 I would describe myself as a strong coder because I:
 
@@ -438,40 +377,34 @@ I would describe myself as a strong coder because I:
 
 - Help other coders fix bugs and improve their code
 
-#### Outline your thoughts on open-source software development. Have you been an open-source maintainer, and can you point to those projects?
+### Outline your thoughts on open-source software development. Have you been an open-source maintainer, and can you point to those projects?
 
 I have not been an open source maintainer, and this year is the first time I signed up to contribute to my first open source project, Webblocks[https://github.com/zero-to-mastery/webblocks-2022]
 
-#### How extensive is your experience in Python software engineering? How do you test Python applications? Outline the applications that you have led in Python, and your takeaways from that experience
+### How extensive is your experience in Python software engineering? How do you test Python applications? Outline the applications that you have led in Python, and your takeaways from that experience
 
 I do not have an extensive experience in Python software engineering. I have only taken an introductory course in Python and built simple projects with it. I have not led any projects in Python.
 
-#### How extensive is your experience in Golang software engineering? Outline the applications that you have led in Golang
+### How extensive is your experience in Golang software engineering? Outline the applications that you have led in Golang
 
 I do not have any experience with Golang. I have not led any projects in Golang.
 
-#### Describe your experience of web programming - JavaScript, Typescript, React and CSS in particular
+### Describe your experience of web programming - JavaScript, Typescript, React and CSS in particular
 
 I have experience with web programming using JavaScript, Typescript, React, and CSS. I have worked on personal projects, using these technologies, collaborated with other developers on these technologies to build personal projects and collaborate on projects in a team. I have also mentored other developers on these technologies on a personal and cooperate level.
 
 My journey with Web programming started in 2012 when I completed a Web Design course at an IT training Institute here in Lagos Nigeria.
-
 After that, I went on to take the Complete Web Developer Course 1.0 on Udemy by Rob Percival.
-
 I spent a lot of hours in that period practising and honing my skills in HTML, CSS, JavaScript and technologies in the LAMP stack.
-
 I went on to build a few personal projects for myself and my friends using these technologies, including PHP and MySQL for the backend.
 
 In 2015, I took a break from web development and design to focus on my studies.
 
 I came back in 2018 and realised my skills had been outdated.
-
 I went on to take the Complete Web Developer Course 2.0 and the Object Oriented Programming boh on Udemy by Rob Percival.
-
 I also took the Modern React with Redux course and a course on Node.js by Andrei Neagoie on Udemy.
 
 Thereafter, I started freelancing professionally and in that same year grabbed the gold and bronze medals, at the state and national levels respectively of the 2019 iCreate Skills Festival.
-
 I also volunteered as a Community mentor for a Web Developer BootCamp organized by the Nigerian Society of Engineers in my school, the University of Nigeria.
 
 In 2020, I continued to practice my skills in React, Redux, Node, Express and PostgreSQL, by building personal projects and freelancing. I also went on to speak at a Remote Student Conference held in South Africa by Microsoft Student Partners and Geekulcha on Web development
@@ -480,7 +413,7 @@ In 2021, I completed my schooling and in April went on to get my first cooperate
 
 I have gone on to adopt more technologies like GraphQL(with Apollo), TypeScript, SASS, Ant Design, React testing Library, Storybook, MongoDB, and Firebase.
 
-#### How have you used relational data, such as SQL databases, in your work? How much data model design work have you done? How do you approach this work? What has been unexpected for you in working with structured data models and design?
+### How have you used relational data, such as SQL databases, in your work? How much data model design work have you done? How do you approach this work? What has been unexpected for you in working with structured data models and design?
 
 On a few occasions, I have used relational data, such as SQL databases, in my work. I have worked on some freelance and personal projects that required me to design and implement data models using SQL databases. I have also worked on personal projects that required me to design and implement data models using NoSQL databases.
 
@@ -496,14 +429,9 @@ The steps I have followed loosely in the past include:
 
 > I am aware of the physical data model, but have not been tasked with that responsibility in the past.
 
-##### Resources 5
-
-- [SQL: Tutorial: Database Design by DataCamp](https://www.youtube.com/watch?v=9X7CpysEjEw)
-
-#### Describe your experience with micro-service architectures - web front ends, REST APIs, data stores, event processing and other kinds of integration between components. What are the key considerations for architecture, maintainability, and reliability in these large systems?
+### Describe your experience with micro-service architectures - web front ends, REST APIs, data stores, event processing and other kinds of integration between components. What are the key considerations for architecture, maintainability, and reliability in these large systems?
 
 I have the experience of being part of the team that is building the Remotebase developers portal at <https://developers.remotebase.com>.
-
 I worked on the front-end microservice built with React.
 
 When deciding whether microservice architecture is best for an application, the following are key considerations:
@@ -516,14 +444,9 @@ When deciding whether microservice architecture is best for an application, the 
 
 - Inter-service communication: Synchronous inter-service communication typically reduces the availability of an application. For example, if the order service in an e-commerce application synchronously invokes other services upstream, and if those services are unavailable, it can't create an order. Therefore, it is recommended to implement asynchronous, message‑based communication.
 
-##### Resources 6
-
-- [Google Cloud: Introduction to Microservices](https://cloud.google.com/architecture/microservices-architecture-introduction)
-
-#### Outline your thoughts on quality in software development. What practices are most effective in software teams to drive improvements in quality?
+### Outline your thoughts on quality in software development. What practices are most effective in software teams to drive improvements in quality?
 
 I believe that quality in software development is very important. It is the difference between a good product and a great product. I believe a product should not just be easy to use, but also easy to maintain and scale.
-
 I believe that the most effective practices in software teams to drive improvements in quality are:
 
 - Test early and often with automation to ensure that any defects to the product do not snowball into larger, more complicated issues, and to increase test coverage and accuracy, thus improving the quality of the overall product.
@@ -546,13 +469,9 @@ I believe that the most effective practices in software teams to drive improveme
 
 - When quality is delivered, remember what worked well and what did not work well. Keep an updated record of both the positives and negatives of any given project and turn to it frequently for future projects.
 
-##### Resources 7
+## Context
 
-- [11 ways to improve software quality](https://testpoint.com.au/11-ways-to-improve-software-quality/)
-
-### Context
-
-#### Outline your thoughts on the mission of Canonical. What is it about the company's purpose and goals which is most appealing to you? What is risky or unappealing? Are there any elements of the company goals that you are unsure about?
+### Outline your thoughts on the mission of Canonical. What is it about the company's purpose and goals which is most appealing to you? What is risky or unappealing? Are there any elements of the company goals that you are unsure about?
 
 > Seamless consumption of open source across the computing spectrum
 
@@ -576,7 +495,7 @@ The company's goals and purpose I find most appealing, are described in the high
 
 - It is impressive that people at Canonical think that teammates are amazing. I look forward to joining this amazing community.
 
-#### Who are competitors to Canonical, and what does Canonical need to change to be a more effective competitor?
+### Who are competitors to Canonical, and what does Canonical need to change to be a more effective competitor?
 
 Some Canonical competitors include:
 
@@ -610,11 +529,11 @@ I agree that Ubuntu is a powerful OS that gives more control than Windows.
 
 However, most people without programming/engineering skills) is looking for a laptop to primarily browse, enjoy multimedia files, game and do word processing and, in some cases, video and image editing. It will be nice for Canonical to have a reasonable market share of these consumers by providing more services and products tailored to them.
 
-#### Why do you most want to work for Canonical?
+### Why do you most want to work for Canonical?
 
 I want to work for Canonical because I believe in the mission of the company, and I can contribute to the growth of the company and the community. I can learn a lot from the company and the community. I can also teach and share my knowledge with the community and the company.
 
-#### Which Canonical products and services would you most like to work on?
+### Which Canonical products and services would you most like to work on?
 
 Here is a screenshot I took from the Canonical website of the lifestyle page:
 

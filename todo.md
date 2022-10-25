@@ -1,5 +1,7 @@
 # ToDo
 
+- [ ] Research for and get the CSS frameworks with the best implementation of the semantic markup.
+
 - [ ] [Read up React documentation](https://reactjs.org/docs/getting-started.html)
 
 - [ ] [Read up Create React App documentation](https://create-react-app.dev/)
@@ -15,3 +17,11 @@
 - [ ] [Read up Styled Components documentation](https://styled-components.com/docs/basics)
 
 ## Temp
+
+```tsx
+import configureStore from "redux-mock-store";
+import thunkMiddleware from "redux-thunk";
+
+const mockStore = configureStore([thunkMiddleware]);
+
+```
