@@ -1,6 +1,10 @@
 # ToDo
 
+## Tasks
+
 - [ ] Add Tests for Crwn-Clothing
+
+- [ ] Protected routes for Crwn-clothing
 
 - [ ] Update all forms to use [`react-hook-form`](https://react-hook-form.com/)
 
@@ -8,7 +12,9 @@
 
 - [ ] Research for and get the CSS frameworks with the best implementation of the semantic markup.
 
-- [ ] Take GatsBy course on Udemy, possibly from ZTM
+## Further Reading
+
+- [ ] [Learn GatsBy](https://www.gatsbyjs.org/tutorial/)
 
 - [ ] [Read up React documentation](https://reactjs.org/docs/getting-started.html)
 
