@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-debugging-utils */
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import FormInput, { Label } from "./form-input";
@@ -7,6 +6,7 @@ const formInputProps = {
   id: "custom-id",
   value: "safety",
   type: "password",
+  name: "password",
   label: {
     value: "Email",
     id: "login-email-label"
@@ -14,10 +14,17 @@ const formInputProps = {
 }
 
 describe("FormInput", () => {
+  it("should not display for empty name prop", () => {
+    render(<FormInput name="" />);
+
+    expect(screen).toMatchSnapshot();
+    expect(screen.queryByRole("textbox")).toBeNull();
+  })
+
   it("should render the form input", () => {
     expect.assertions(5);
 
-    render(<FormInput />);
+    render(<FormInput name="test" />);
     const screenInput = screen.getByRole("textbox");
 
     expect(screen).toMatchSnapshot();
@@ -65,7 +72,7 @@ describe("FormInput", () => {
     expect.assertions(2);
 
     const mockOnChange = jest.fn() as jest.Mock;
-    render(<FormInput onChange={mockOnChange} />);
+    render(<FormInput onChange={mockOnChange} name="test" />);
 
     await userEvent.type(screen.getByRole("textbox"), "Hello");
 

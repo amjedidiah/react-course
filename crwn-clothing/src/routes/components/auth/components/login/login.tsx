@@ -50,10 +50,6 @@ export default function Login() {
       { email, password }: FormValues,
       setFormValues: Dispatch<SetStateAction<FormValues>>
     ) => {
-      if (!(email && password)) {
-        return alert("Please fill in all fields");
-      }
-
       dispatch(emailLoginPending({ email, password }));
       setFormValues({});
     },
@@ -71,6 +67,7 @@ export default function Login() {
         buttons={buttons}
         onSubmit={handleLogin}
         formType="login"
+        testId="login-form"
       />
     </div>
   );

@@ -9,6 +9,7 @@ export type Label = {
 
 export type FormInputProps = {
   label?: Label;
+  name: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function FormInput({
@@ -18,6 +19,8 @@ export function FormInput({
   type = "text",
   ...otherProps
 }: FormInputProps) {
+  if (otherProps.name === '') return null;
+
   return (
     <div className={styles.group}>
       <input

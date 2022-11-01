@@ -60,13 +60,9 @@ export default function Register() {
   const dispatch = useDispatch();
   const handleRegister = useCallback(
     async (
-      { displayName, email, password, confirmPassword }: FormValues,
+      { displayName, email, password }: FormValues,
       setFormValues: Dispatch<SetStateAction<FormValues>>
     ) => {
-      if (password !== confirmPassword) {
-        return alert("Passwords do not match");
-      }
-
       dispatch(emailRegisterPending({ displayName, email, password }));
       setFormValues({});
     },
@@ -84,6 +80,7 @@ export default function Register() {
         buttons={buttons}
         onSubmit={handleRegister}
         formType="register"
+        testId="register-form"
       />
     </div>
   );

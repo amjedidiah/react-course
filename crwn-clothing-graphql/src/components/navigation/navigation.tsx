@@ -26,8 +26,6 @@ export default function Navigation() {
   const handleLogout = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
     signOutAuth();
-    // Disabled because dispatch is never updated throughout the React app lifecycle
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updatedPages = useMemo(() => {

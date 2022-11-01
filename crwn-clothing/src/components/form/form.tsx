@@ -29,6 +29,7 @@ export type FormProps = {
     setFormValues: Dispatch<SetStateAction<FormValues>>
   ) => void;
   formType: keyof typeof FormType;
+  testId?: string;
 };
 
 export default function Form({
@@ -36,35 +37,49 @@ export default function Form({
   buttons,
   onSubmit,
   formType,
+  testId,
 }: FormProps) {
   const [formValues, setFormValues] = useState<FormValues>({});
 
   const handleChange = useCallback(
-    ({ target: { id, value } }: ChangeEvent<HTMLInputElement>) =>
-      setFormValues({ ...formValues, [id]: value }),
+    ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) =>
+      setFormValues({ ...formValues, [name]: value }),
     [formValues]
   );
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+
+      // check for required fields
+      const requiredFields = formFields.filter((field) => field.required);
+      const missingFields = requiredFields.filter(
+        (field) => !formValues[field.name]
+      );
+      if (missingFields.length) return alert("Please fill in all fields");
+
+      // check for matching password
+      if (
+        formValues["confirmPassword"] &&
+        formValues["password"] !== formValues["confirmPassword"]
+      )
+        return alert("Passwords do not match");
+
       onSubmit(formValues, setFormValues);
     },
-    [formValues, onSubmit]
+    [formFields, formValues, onSubmit]
   );
 
   return (
-    <form onSubmit={handleSubmit} data-testid="form">
+    <form onSubmit={handleSubmit} data-testid={testId ?? "form"}>
       {formFields.map((formField, i) => {
-        const id = `${formType}-${formField.id ?? i}`;
         const completeField = {
           ...formField,
-          id,
           onChange: handleChange,
-          value: formValues[id],
+          value: formValues[formField.name],
         };
 
-        return <FormInput key={id} {...completeField} />;
+        return <FormInput key={`${formType}-${i}`} {...completeField} />;
       })}
 
       <div className={styles["buttons-container"]}>
