@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-debugging-utils */
 import { screen, render, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";

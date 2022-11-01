@@ -4,32 +4,45 @@ import { emailRegisterPending } from "redux/slices/user.slice";
 import { useDispatch } from "react-redux";
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { ButtonProps } from "components/button/button";
+import { Label } from "components/form/components/form-input/form-input";
 
 const formFields = [
   {
     name: "displayName",
-    label: "Display Name",
+    label: {
+      value: "Display Name",
+      id: "register-display-name",
+    } as Label,
     type: "text",
     placeholder: "e.g: John Doe",
     required: true,
   },
   {
     name: "email",
-    label: "Email",
+    label: {
+      value: "Email",
+      id: "register-email",
+    } as Label,
     type: "email",
     placeholder: "e.g: john.doe@example.com",
     required: true,
   },
   {
     name: "password",
-    label: "Password",
+    label: {
+      value: "Password",
+      id: "register-password",
+    } as Label,
     type: "password",
     placeholder: "Enter your password",
     required: true,
   },
   {
     name: "confirmPassword",
-    label: "Confirm Password",
+    label: {
+      value: "Confirm Password",
+      id: "register-confirm-password",
+    } as Label,
     type: "password",
     placeholder: "Confirm your password",
     required: true,
@@ -45,19 +58,21 @@ const buttons = [
 
 export default function Register() {
   const dispatch = useDispatch();
-  const handleRegister = useCallback(async (
-    { displayName, email, password, confirmPassword }: FormValues,
-    setFormValues: Dispatch<SetStateAction<FormValues>>
-  ) => {
-    if (password !== confirmPassword) {
-      return alert("Passwords do not match");
-    }
+  const handleRegister = useCallback(
+    async (
+      { displayName, email, password, confirmPassword }: FormValues,
+      setFormValues: Dispatch<SetStateAction<FormValues>>
+    ) => {
+      if (password !== confirmPassword) {
+        return alert("Passwords do not match");
+      }
 
-    dispatch(emailRegisterPending({ displayName, email, password }));
-    setFormValues({});
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      dispatch(emailRegisterPending({ displayName, email, password }));
+      setFormValues({});
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return (
     <div className={styles["auth-child-container"]}>

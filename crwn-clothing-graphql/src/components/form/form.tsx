@@ -16,12 +16,12 @@ export type FormValues = {
   [key: string]: string;
 };
 
-enum FormType {
+export enum FormType {
   login = "login",
   register = "register",
 }
 
-type FormProps = {
+export type FormProps = {
   formFields: FormInputProps[];
   buttons: ButtonProps[];
   onSubmit: (
@@ -40,8 +40,8 @@ export default function Form({
   const [formValues, setFormValues] = useState<FormValues>({});
 
   const handleChange = useCallback(
-    ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) =>
-      setFormValues({ ...formValues, [name]: value }),
+    ({ target: { id, value } }: ChangeEvent<HTMLInputElement>) =>
+      setFormValues({ ...formValues, [id]: value }),
     [formValues]
   );
 
@@ -54,15 +54,14 @@ export default function Form({
   );
 
   return (
-    <form onSubmit={handleSubmit}>
-      {formFields.map((formField) => {
-        const id = `${formType}-${formField.name}`;
-        const value = formField.name ? formValues[formField.name] : "";
+    <form onSubmit={handleSubmit} data-testid="form">
+      {formFields.map((formField, i) => {
+        const id = `${formType}-${formField.id ?? i}`;
         const completeField = {
           ...formField,
           id,
           onChange: handleChange,
-          value,
+          value: formValues[id],
         };
 
         return <FormInput key={id} {...completeField} />;

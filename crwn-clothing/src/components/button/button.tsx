@@ -2,7 +2,8 @@ import styles from "components/button/button.module.scss";
 import classNames from "classnames";
 import { InputHTMLAttributes, memo } from "react";
 
-enum BUTTON_TYPE_CLASSES {
+export enum BUTTON_TYPE_CLASSES {
+  custom = "custom",
   google = "google-sign-in",
   inverted = "inverted",
 }
@@ -10,38 +11,41 @@ enum BUTTON_TYPE_CLASSES {
 export type ButtonProps = {
   loading?: boolean;
   buttonType?: keyof typeof BUTTON_TYPE_CLASSES;
+  dataTestId?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function Button({
-  buttonType,
+  buttonType = "custom",
   loading,
   value,
   className,
-  type="button",
+  type = "button",
   onChange = () => {},
   ...otherProps
 }: ButtonProps) {
-  const buttonTypeClassName = buttonType ? styles[BUTTON_TYPE_CLASSES[buttonType]] : "";
-
   return (
     <div className={styles["button-wrapper"]}>
       <input
         className={classNames(
           styles["button-container"],
-          buttonTypeClassName,
+          styles[BUTTON_TYPE_CLASSES[buttonType]],
           className
         )}
         disabled={loading}
         value={loading ? "" : value}
         type={type}
         onChange={onChange}
+        data-testid={otherProps["dataTestId"] ?? buttonType}
         {...otherProps}
       />
-      <div
-        className={classNames({
-          [styles.spinner]: loading,
-        })}
-      />
+      {loading && (
+        <div
+          className={styles.spinner}
+          role="alert"
+          aria-busy="true"
+          aria-label="loading..."
+        />
+      )}
     </div>
   );
 }

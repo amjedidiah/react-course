@@ -2,32 +2,41 @@ import styles from "components/form/components/form-input/form-input.module.scss
 import classNames from "classnames";
 import { memo, InputHTMLAttributes } from "react";
 
+export type Label = {
+  value: string;
+  id: string;
+};
+
 export type FormInputProps = {
-  label: string;
+  label?: Label;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function FormInput({
-  id,
   label,
   value = "",
+  onChange = () => {},
+  type = "text",
   ...otherProps
 }: FormInputProps) {
   return (
     <div className={styles.group}>
       <input
-        id={id}
         className={styles["form-input"]}
         value={value}
+        onChange={onChange}
+        type={type}
+        aria-labelledby={label?.id}
         {...otherProps}
       />
       {label && (
         <label
-          htmlFor={id}
+          id={label.id}
           className={classNames(styles["form-input-label"], {
             [styles.shrink]: Boolean(value && value.toString().length),
           })}
+          data-testid="form-input-label"
         >
-          {label}
+          {label.value}
         </label>
       )}
     </div>

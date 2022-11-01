@@ -3,32 +3,45 @@ import styles from "routes/components/auth/auth.module.scss";
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { ButtonProps } from "components/button/button";
 import { createAuthUserWithEmailAndPassword, createUserFromAuth, UserData } from "utils/firebase.utils";
+import { Label } from "components/form/components/form-input/form-input";
 
 const formFields = [
   {
     name: "displayName",
-    label: "Display Name",
+    label: {
+      value: "Display Name",
+      id: "register-display-name",
+    } as Label,
     type: "text",
     placeholder: "e.g: John Doe",
     required: true,
   },
   {
     name: "email",
-    label: "Email",
+    label: {
+      value: "Email",
+      id: "register-email",
+    } as Label,
     type: "email",
     placeholder: "e.g: john.doe@example.com",
     required: true,
   },
   {
     name: "password",
-    label: "Password",
+    label: {
+      value: "Password",
+      id: "register-password",
+    } as Label,
     type: "password",
     placeholder: "Enter your password",
     required: true,
   },
   {
     name: "confirmPassword",
-    label: "Confirm Password",
+    label: {
+      value: "Confirm Password",
+      id: "register-confirm-password",
+    } as Label,
     type: "password",
     placeholder: "Confirm your password",
     required: true,

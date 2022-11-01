@@ -1,4 +1,5 @@
 import { ButtonProps } from "components/button/button";
+import { Label } from "components/form/components/form-input/form-input";
 import Form, { FormValues } from "components/form/form";
 import { Dispatch, SetStateAction, useCallback } from "react";
 import styles from "routes/components/auth/auth.module.scss";
@@ -7,14 +8,20 @@ import { signInAuthWithEmailAndPassword, signInWithGoogleRedirect } from "utils/
 const formFields = [
   {
     name: "email",
-    label: "Email",
+    label: {
+      id: "login-email",
+      value: "Email",
+    } as Label,
     type: "email",
     placeholder: "e.g: john.doe@example.com",
     required: true,
   },
   {
     name: "password",
-    label: "Password",
+    label: {
+      id: "login-password",
+      value: "Password",
+    } as Label,
     type: "password",
     placeholder: "Enter your password",
     required: true,
