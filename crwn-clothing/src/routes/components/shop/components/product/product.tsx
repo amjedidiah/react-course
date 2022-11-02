@@ -31,6 +31,7 @@ export function Product({
         <span className={styles.price}>{price}</span>
       </div>
       <Button
+        id="add-to-cart-button"
         buttonType="inverted"
         value="Add to cart"
         onClick={addItemToCart}

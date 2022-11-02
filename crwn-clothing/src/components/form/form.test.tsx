@@ -19,6 +19,7 @@ const mockedFormProps = {
   ],
   buttons: [
     {
+      id: "submit-button-signin",
       type: "submit",
       value: "Sign In",
     },

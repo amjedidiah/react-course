@@ -32,10 +32,12 @@ const formFields = [
 
 const buttons = [
   {
+    id: "submit-button-login",
     type: "submit",
     value: "Login",
   },
   {
+    id: "submit-button-login-with-google",
     value: "Login with Google",
     onClick: signInWithGoogleRedirect,
     buttonType: "google",

@@ -2,7 +2,8 @@ import { screen, render } from "@testing-library/react";
 import Button from "./button";
 
 const buttonProps = {
-  value: "Click me"
+  value: "Click me",
+  id: "button"
 }
 
 describe("Button", () => {

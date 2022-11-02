@@ -72,19 +72,19 @@ export default function Form({
 
   return (
     <form onSubmit={handleSubmit} data-testid={testId ?? "form"}>
-      {formFields.map((formField, i) => {
+      {formFields.map((formField) => {
         const completeField = {
           ...formField,
           onChange: handleChange,
           value: formValues[formField.name],
         };
 
-        return <FormInput key={`${formType}-${i}`} {...completeField} />;
+        return <FormInput key={`${formType}-${formField.name}`} {...completeField} />;
       })}
 
       <div className={styles["buttons-container"]}>
-        {buttons.map((button, i) => (
-          <Button key={`button-${i}`} {...button} />
+        {buttons.map((button) => (
+          <Button key={button.id} {...button} />
         ))}
       </div>
     </form>

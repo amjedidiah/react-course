@@ -11,6 +11,7 @@ const pages = [
   {
     to: "/shop",
     children: "SHOP",
+    id: "shop-link",
   },
 ] as LinkProps[];
 
@@ -31,24 +32,26 @@ export default function Navigation() {
           to: "",
           children: "LOGOUT",
           onClick: handleLogout,
+          id: "logout-link",
         }
       : {
           to: "/auth",
           children: "LOGIN",
+          id: "login-link",
         };
     return pages as LinkProps[];
   }, [currentUser, handleLogout]);
 
   const renderUpdatedPages = useCallback(() => {
-    return updatedPages.map((page, index) =>
+    return updatedPages.map((page) =>
       page.to ? (
         <NavLink
           className={styles["nav-link"]}
-          key={`page-${index}`}
+          key={page.id}
           {...page}
         />
       ) : (
-        <span className={styles["nav-link"]} key={`span-${index}`} {...page} />
+        <span className={styles["nav-link"]} key={`span-${page.id}`} {...page} />
       )
     );
   }, [updatedPages]);

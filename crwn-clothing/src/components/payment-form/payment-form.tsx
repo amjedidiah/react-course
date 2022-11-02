@@ -70,6 +70,7 @@ export default function PaymentForm() {
         <h4>Credit Card Payment </h4>
         <CardElement />
         <Button
+          id="payment-button"
           className={styles["payment-button"]}
           loading={isPaymentOngoing}
           type="submit"

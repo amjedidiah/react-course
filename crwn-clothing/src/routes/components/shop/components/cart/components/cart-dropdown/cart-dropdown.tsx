@@ -37,6 +37,7 @@ export default function CartDropdown() {
         )}
       </div>
       <Button
+        id="go-to-checkout-button"
         value="CHECKOUT"
         onClick={goToCheckout}
         disabled={!cartItemsArray.length}

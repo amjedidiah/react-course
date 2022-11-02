@@ -51,6 +51,7 @@ const formFields = [
 
 const buttons = [
   {
+    id: "submit-button-register",
     type: "submit",
     value: "Register",
   },

@@ -9,10 +9,10 @@ const Shop = lazy(() => import("routes/components/shop/shop"));
 const Checkout = lazy(() => import("routes/components/checkout/checkout"));
 
 export const routes = [
-  { element: <Home />, index: true },
-  { element: <Auth />, path: "/auth" },
-  { element: <Checkout />, path: "/checkout" },
-  { element: <Shop />, path: "/shop/*" },
+  { element: <Home />, index: true, id: "home" },
+  { element: <Auth />, path: "/auth", id: "auth" },
+  { element: <Checkout />, path: "/checkout", id: "checkout" },
+  { element: <Shop />, path: "/shop/*", id: "shop" },
 ] as RouteProps[];
 
 export default function AppRoutes() {
@@ -22,7 +22,7 @@ export default function AppRoutes() {
         <Routes>
           <Route path="/" element={<Navigation />}>
             {routes.map((route, i) => (
-              <Route key={`route-${i}`} {...route} />
+              <Route key={route.id} {...route} />
             ))}
           </Route>
         </Routes>

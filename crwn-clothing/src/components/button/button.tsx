@@ -12,6 +12,7 @@ export type ButtonProps = {
   loading?: boolean;
   buttonType?: keyof typeof BUTTON_TYPE_CLASSES;
   dataTestId?: string;
+  id: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function Button({

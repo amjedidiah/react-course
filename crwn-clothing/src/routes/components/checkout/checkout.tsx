@@ -14,8 +14,8 @@ export default function Checkout() {
   return (
     <div className={styles["checkout-container"]}>
       <div className={styles["checkout-header"]}>
-        {headerBlocks.map((headerBlock, i) => (
-          <div className={styles["header-block"]} key={`header-block-${i}`}>
+        {headerBlocks.map((headerBlock) => (
+          <div className={styles["header-block"]} key={headerBlock}>
             <span>{headerBlock}</span>
           </div>
         ))}
