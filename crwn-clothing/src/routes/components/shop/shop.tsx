@@ -2,24 +2,24 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "routes/components/shop/shop.module.scss";
 import CategoryPreview from "routes/components/shop/components/category-preview/category-preview";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import {
   selectCategoryLoading,
   selectCategoryMap,
-  fetchCategoriesStart,
+  fetchCategories,
 } from "redux/slices/category.slice";
 import Spinner from "components/spinner/spinner";
 
 export default function Shop() {
-  const categoryMap = useSelector(selectCategoryMap);
-  const categoryIsLoading = useSelector(selectCategoryLoading);
+  const categoryMap = useAppSelector(selectCategoryMap);
+  const categoryIsLoading = useAppSelector(selectCategoryLoading);
   const [shouldSlice, setShouldSlice] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const params = useParams();
   const category = params["*"]?.split("/")[0];
 
   useEffect(() => {
-    dispatch(fetchCategoriesStart());
+    dispatch(fetchCategories());
 
     /* Ought To Be Called One Time On The Backend */
     // const addCollection = async () => {

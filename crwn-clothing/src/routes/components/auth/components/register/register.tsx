@@ -1,7 +1,7 @@
 import Form, { FormValues } from "components/form/form";
 import styles from "routes/components/auth/auth.module.scss";
 import { emailRegisterPending } from "redux/slices/user.slice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "redux/hooks";
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { ButtonProps } from "components/button/button";
 import { Label } from "components/form/components/form-input/form-input";
@@ -57,7 +57,7 @@ const buttons = [
 ] as ButtonProps[];
 
 export default function Register() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleRegister = useCallback(
     async (
       { displayName, email, password }: FormValues,

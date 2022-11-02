@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  CartItems,
-  CartState,
-  CategoryMap,
-  RootState,
-} from "redux/redux.types";
+import { CartItems, CartState, CategoryMap } from "redux/redux.types";
+import { RootState } from "redux/store";
 import { reverseObject } from "utils/array.util";
 
 type CartAddObject = {
@@ -20,12 +16,14 @@ type CartRemoveObject = {
   removeAll?: boolean;
 };
 
+export const initialState = {
+  cartItems: {},
+  isCartOpen: false,
+} as CartState;
+
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    cartItems: {},
-    isCartOpen: false,
-  } as CartState,
+  initialState,
   reducers: {
     updateCartItems: (state, action: PayloadAction<CartItems>) => {
       state.cartItems = action.payload;

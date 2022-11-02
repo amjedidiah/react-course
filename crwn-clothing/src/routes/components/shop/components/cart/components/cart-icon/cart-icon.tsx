@@ -1,7 +1,7 @@
 import styles from "routes/components/shop/components/cart/components/cart-icon/cart-icon.module.scss";
 import { ReactComponent as ShoppingIcon } from "assets/shopping-bag.svg";
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import {
   selectCartIsOpen,
   selectCartItemsCount,
@@ -9,9 +9,9 @@ import {
 } from "redux/slices/cart.slice";
 
 export default function CartIcon() {
-  const isCartOpen = useSelector(selectCartIsOpen);
-  const cartItemsCount = useSelector(selectCartItemsCount);
-  const dispatch = useDispatch();
+  const isCartOpen = useAppSelector(selectCartIsOpen);
+  const cartItemsCount = useAppSelector(selectCartItemsCount);
+  const dispatch = useAppDispatch();
 
   const toggleCartDropdown = useCallback(() => {
     dispatch(toggleCart(!isCartOpen));

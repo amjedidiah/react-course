@@ -1,7 +1,6 @@
-import classNames from "classnames";
 import Button from "components/button/button";
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { useNavigate } from "react-router-dom";
 import {
   selectCartIsOpen,
@@ -13,23 +12,21 @@ import CartItem from "routes/components/shop/components/cart/components/cart-ite
 
 export default function CartDropdown() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isCartOpen = useSelector(selectCartIsOpen);
-  const cartItemsArray = useSelector(selectCartItemsArray);
+  const dispatch = useAppDispatch();
+  const isCartOpen = useAppSelector(selectCartIsOpen);
+  const cartItemsArray = useAppSelector(selectCartItemsArray);
 
   const goToCheckout = useCallback(() => {
     dispatch(toggleCart(true));
-    navigate("/checkout")
+    navigate("/checkout");
     // Disabled because dispatch is never updated throughout the React app lifecycle
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (!isCartOpen) return null;
+
   return (
-    <div
-      className={classNames(styles["cart-dropdown-container"], {
-        [styles.hide]: !isCartOpen,
-      })}
-    >
+    <div className={styles["cart-dropdown-container"]}>
       <div className={styles["cart-items"]}>
         {cartItemsArray.length ? (
           cartItemsArray.map((cartItem) => (

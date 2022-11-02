@@ -16,11 +16,6 @@ export type FormValues = {
   [key: string]: string;
 };
 
-export enum FormType {
-  login = "login",
-  register = "register",
-}
-
 export type FormProps = {
   formFields: FormInputProps[];
   buttons: ButtonProps[];
@@ -28,7 +23,7 @@ export type FormProps = {
     formValues: FormValues,
     setFormValues: Dispatch<SetStateAction<FormValues>>
   ) => void;
-  formType: keyof typeof FormType;
+  formType: 'login' | 'register';
 };
 
 export default function Form({

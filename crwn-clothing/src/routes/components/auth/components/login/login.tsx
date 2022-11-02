@@ -2,7 +2,7 @@ import { ButtonProps } from "components/button/button";
 import { Label } from "components/form/components/form-input/form-input";
 import Form, { FormValues } from "components/form/form";
 import { Dispatch, SetStateAction, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "redux/hooks";
 import { emailLoginPending } from "redux/slices/user.slice";
 import styles from "routes/components/auth/auth.module.scss";
 import { signInWithGoogleRedirect } from "utils/firebase.utils";
@@ -43,7 +43,7 @@ const buttons = [
 ] as ButtonProps[];
 
 export default function Login() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleLogin = useCallback(
     async (

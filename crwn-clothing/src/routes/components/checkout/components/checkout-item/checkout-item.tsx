@@ -1,5 +1,5 @@
 import { useCallback, memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import {
   addToCart,
   removeFromCart,
@@ -17,9 +17,9 @@ export function CheckoutItem({
   quantity,
   category,
 }: CartItemProps) {
-  const categoryMap = useSelector(selectCategoryMap);
-  const cartItems = useSelector(selectCartItems);
-  const dispatch = useDispatch();
+  const categoryMap = useAppSelector(selectCategoryMap);
+  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
 
   const removeItemFromCart = useCallback(
     () => dispatch(removeFromCart({ id, cartItems })),

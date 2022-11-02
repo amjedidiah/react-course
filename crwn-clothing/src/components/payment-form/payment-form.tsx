@@ -1,7 +1,7 @@
 import { FormEvent, useCallback, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from "components/button/button";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import styles from "./payment-form.module.scss";
 import { clearCart, selectCartTotal } from "redux/slices/cart.slice";
 import { selectCurrentUser } from "redux/slices/user.slice";
@@ -14,10 +14,10 @@ const ifValidCardElement = (
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const amount = useSelector(selectCartTotal);
-  const currentUser = useSelector(selectCurrentUser);
+  const amount = useAppSelector(selectCartTotal);
+  const currentUser = useAppSelector(selectCurrentUser);
   const [isPaymentOngoing, setIsPaymentOngoing] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const paymentHandler = useCallback( async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

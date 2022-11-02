@@ -2,33 +2,33 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
+import { PreloadedState } from "@reduxjs/toolkit";
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
-import React from "react";
+import { render, RenderOptions } from "@testing-library/react";
+import React, { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
-import configureStore from "redux-mock-store";
-import thunkMiddleware from "redux-thunk";
+import { AppStore, RootState, setupStore } from "redux/store";
 
-// Mock Store
-const mockStore = configureStore([thunkMiddleware]);
-const initialState = {
-  user: {
-    currentUser: null,
-    error: null,
-    isLoading: false,
-  },
-};
-export const store = mockStore(initialState);
-const storeDispatch = store.dispatch;
-store.dispatch = jest.fn(storeDispatch);
+interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
+  preloadedState?: PreloadedState<RootState>;
+  store?: AppStore;
+}
 
-// Render component with Store
-export const renderWithStore = (Component: React.FC) =>
-  render(
-    <Provider store={store}>
-      <Component />
-    </Provider>
-  );
+// Render components with Provider
+export function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    preloadedState = {},
+    store = setupStore(preloadedState),
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) {
+  function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
+    return <Provider store={store}>{children}</Provider>;
+  }
+
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+}
 
 // Mock Alert
 export const mockAlert = jest.fn();

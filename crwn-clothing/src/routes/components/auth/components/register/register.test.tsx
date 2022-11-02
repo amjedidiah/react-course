@@ -1,14 +1,14 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { emailRegisterPending } from "redux/slices/user.slice";
-import { renderWithStore, store } from "setupTests";
+import { renderWithProviders } from "setupTests";
 import Register from "./register";
 
 describe("Register", () => {
   it("should render properly", () => {
     expect.assertions(4);
 
-    renderWithStore(Register);
+    renderWithProviders(<Register />);
 
     expect(screen).toMatchSnapshot();
     expect(
@@ -29,7 +29,7 @@ describe("Register", () => {
     const email = "john.doe@gmail.com";
     const password = "Alpha1";
 
-    renderWithStore(Register);
+    const { store } = renderWithProviders(<Register />);
 
     await userEvent.type(
       screen.getByRole("textbox", {

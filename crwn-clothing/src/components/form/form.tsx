@@ -16,11 +16,6 @@ export type FormValues = {
   [key: string]: string;
 };
 
-export enum FormType {
-  login = "login",
-  register = "register",
-}
-
 export type FormProps = {
   formFields: FormInputProps[];
   buttons: ButtonProps[];
@@ -28,7 +23,7 @@ export type FormProps = {
     formValues: FormValues,
     setFormValues: Dispatch<SetStateAction<FormValues>>
   ) => void;
-  formType: keyof typeof FormType;
+  formType: 'login' | 'register'
   testId?: string;
 };
 
@@ -57,6 +52,11 @@ export default function Form({
         (field) => !formValues[field.name]
       );
       if (missingFields.length) return alert("Please fill in all fields");
+
+      // check for valid email with regex
+      const emailField = formFields.find((field) => field.type === "email");
+      if (emailField && !formValues[emailField.name].match(/.+@.+\..+/))
+        return alert("Please enter a valid email");
 
       // check for matching password
       if (

@@ -47,12 +47,6 @@ export type StateError = {
   message: string;
 } | null;
 
-export type RootState = {
-  readonly cart: CartState;
-  readonly category: CategoryState;
-  readonly user: UserState;
-};
-
 export type UserState = {
   readonly currentUser: UserData | null;
   readonly error: StateError;

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockAlert } from "setupTests";
-import Form, { FormProps, FormType } from "./form";
+import Form, { FormProps } from "./form";
 
 const mockedFormProps = {
   onSubmit: jest.fn() as jest.Mock,
@@ -23,7 +23,7 @@ const mockedFormProps = {
       value: "Sign In",
     },
   ],
-  formType: "login" as keyof typeof FormType,
+  formType: "login",
 } as FormProps;
 
 describe("Form", () => {
@@ -56,7 +56,7 @@ describe("Form", () => {
     expect(emailInput).toHaveValue("Hello");
   });
 
-  it("should alert for invalid submission", async () => {
+  it("should alert for required fields", async () => {
     expect.assertions(2);
 
     render(<Form {...mockedFormProps} />);
@@ -65,6 +65,18 @@ describe("Form", () => {
 
     expect(screen).toMatchSnapshot();
     expect(mockAlert).toHaveBeenCalledWith("Please fill in all fields");
+  });
+
+  it("should alert for invalid email", async () => {
+    expect.assertions(2);
+
+    render(<Form {...mockedFormProps} />);
+
+    await userEvent.type(screen.getByRole("textbox"), "Hello");
+    await userEvent.click(screen.getByTestId("custom"));
+
+    expect(screen).toMatchSnapshot();
+    expect(mockAlert).toHaveBeenCalledWith("Please enter a valid email");
   });
 
   it("should alert for password mismatch", async () => {
@@ -82,7 +94,7 @@ describe("Form", () => {
     };
     render(<Form {...props} />);
 
-    await userEvent.type(screen.getAllByRole("textbox")[0], "Hello");
+    await userEvent.type(screen.getAllByRole("textbox")[0], "john.doe@gmail.com");
     await userEvent.type(screen.getByTestId("password"), "World");
     await userEvent.type(screen.getAllByRole("textbox")[1], "Would");
     await userEvent.click(
@@ -99,7 +111,7 @@ describe("Form", () => {
     expect.assertions(2);
 
     render(<Form {...mockedFormProps} />);
-    await userEvent.type(screen.getByRole("textbox"), "Hello");
+    await userEvent.type(screen.getByRole("textbox"), "jane.doe@gmail.com");
     await userEvent.click(
       screen.getByRole("button", {
         name: /sign in/i,

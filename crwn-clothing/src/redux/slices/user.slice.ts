@@ -1,19 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  AuthDetails,
-  StateError,
-  RootState,
-  UserState,
-} from "redux/redux.types";
+import { AuthDetails, StateError, UserState } from "redux/redux.types";
+import { RootState } from "redux/store";
 import { UserData } from "utils/firebase.utils";
+
+export const initialState = {
+  currentUser: null,
+  isLoading: false,
+  error: null,
+} as UserState;
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    currentUser: null,
-    isLoading: false,
-    error: null,
-  } as UserState,
+  initialState,
   reducers: {
     authenticateUserPending: (state) => {
       state.isLoading = true;

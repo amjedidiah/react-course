@@ -1,14 +1,14 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Login from "./login";
-import { store, renderWithStore } from "setupTests";
+import { renderWithProviders } from "setupTests";
 import { emailLoginPending } from "redux/slices/user.slice";
 
 describe("Login", () => {
   it("should render properly", () => {
     expect.assertions(4);
 
-    renderWithStore(Login);
+    renderWithProviders(<Login />);
 
     expect(screen).toMatchSnapshot();
     expect(
@@ -28,7 +28,7 @@ describe("Login", () => {
     const email = "john.doe@gmail.com";
     const password = "Alpha1";
 
-    renderWithStore(Login);
+    const { store } = renderWithProviders(<Login />);
 
     await userEvent.type(
       screen.getByRole("textbox", {

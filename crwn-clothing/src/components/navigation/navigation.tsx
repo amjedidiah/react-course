@@ -4,7 +4,7 @@ import styles from "components/navigation/navigation.module.scss";
 import { ReactComponent as CrwnLogo } from "assets/crown.svg";
 import CartIcon from "routes/components/shop/components/cart/components/cart-icon/cart-icon";
 import CartDropdown from "routes/components/shop/components/cart/components/cart-dropdown/cart-dropdown";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectCurrentUser, logoutPending } from "redux/slices/user.slice";
 
 const pages = [
@@ -15,8 +15,8 @@ const pages = [
 ] as LinkProps[];
 
 export default function Navigation() {
-  const currentUser = useSelector(selectCurrentUser);
-  const dispatch = useDispatch();
+  const currentUser = useAppSelector(selectCurrentUser);
+  const dispatch = useAppDispatch();
 
   const handleLogout = useCallback((e: SyntheticEvent) => {
     e.preventDefault();

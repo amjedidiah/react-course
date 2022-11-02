@@ -49,6 +49,83 @@ This is a measure of how much of the code is covered by the tests. e.g: Istanbul
 
 > _Mocha_ is usually combined with _Chai_ for assertions and _Sinon_ for spies, stubs and mocks
 
+## Notes on Testing
+
+- Prefer writing integration tests with everything working together. Render a `<Provider>` with a real store instance wrapping the components being tested. Interactions with the page being tested should use real Redux logic, with API calls mocked out so app code doesn't have to change, and assert that the UI is updated appropriately.
+
+- If needed, use basic unit tests for pure functions such as particularly complex reducers or selectors. However, in many cases, these are just implementation details that are covered by integration tests instead.
+
+- Do not try to mock selector functions or the React-Redux hooks! Mocking imports from libraries is fragile, and doesn't give you confidence that your actual app code is working.
+
+- RTL to test UI, Mock Server WOrker(MSW) to mocking network requests
+
+- Reducers are pure functions that return the new state after applying the action to the previous state. In the majority of cases, the reducer is an implementation detail that does not need explicit tests
+
+```tsx
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+export type Todo = {
+  id: number
+  text: string
+  completed: boolean
+}
+
+const initialState: Todo[] = [{ text: 'Use Redux', completed: false, id: 0 }]
+
+const todosSlice = createSlice({
+  name: 'todos',
+  initialState,
+  reducers: {
+    todoAdded(state, action: PayloadAction<string>) {
+      state.push({
+        id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+        completed: false,
+        text: action.payload
+      })
+    }
+  }
+})
+
+export const { todoAdded } = todosSlice.actions
+
+export default todosSlice.reducer 
+```
+
+```tsx
+import reducer, { todoAdded, Todo } from './todosSlice'
+
+test('should return the initial state', () => {
+  expect(reducer(undefined, { type: undefined })).toEqual([
+    { text: 'Use Redux', completed: false, id: 0 }
+  ])
+})
+
+test('should handle a todo being added to an empty list', () => {
+  const previousState: Todo[] = []
+
+  expect(reducer(previousState, todoAdded('Run the tests'))).toEqual([
+    { text: 'Run the tests', completed: false, id: 0 }
+  ])
+})
+
+test('should handle a todo being added to an existing list', () => {
+  const previousState: Todo[] = [
+    { text: 'Run the tests', completed: true, id: 0 }
+  ]
+
+  expect(reducer(previousState, todoAdded('Use Redux'))).toEqual([
+    { text: 'Run the tests', completed: true, id: 0 },
+    { text: 'Use Redux', completed: false, id: 1 }
+  ])
+})
+```
+
+- Selectors are also generally pure functions, and thus can be tested using the same basic approach as reducers: set up an initial value, call the selector function with those inputs, and assert that the result matches the expected output.
+
+    > However, since most selectors are memoized to remember their last inputs, you may need to watch for cases where a selector is returning a cached value when you expected it to generate a new one depending on where it's being used in the test.
+
+- Action creators: Don't feel the need to test action creators by themselves (the Redux Toolkit maintainers have already done that for you!).
+
 ## Resources
 
 - [ ] [Jest Cheat Sheet](https://github.com/sapegin/jest-cheat-sheet)
