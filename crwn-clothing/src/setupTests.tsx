@@ -33,3 +33,28 @@ export function renderWithProviders(
 // Mock Alert
 export const mockAlert = jest.fn();
 global.alert = mockAlert;
+
+
+// Mock firebase function signInAuthWithEmailAndPassword
+jest.mock("utils/firebase.utils", () => ({
+  signInAuthWithEmailAndPassword: jest.fn() as jest.MockedFunction<
+    typeof import("utils/firebase.utils").signInAuthWithEmailAndPassword
+  >,
+  signInWithGoogleRedirect: jest.fn() as jest.MockedFunction<
+    typeof import("utils/firebase.utils").signInWithGoogleRedirect
+  >,
+  createAuthUserWithEmailAndPassword: jest.fn() as jest.MockedFunction<
+  typeof import("utils/firebase.utils").createAuthUserWithEmailAndPassword
+>,
+}));
+
+// Use this function to mock firebase function signInAuthWithEmailAndPassword
+export const signInWithEmail = async (
+  email: string,
+  password: string
+): Promise<void> => {
+  const { signInAuthWithEmailAndPassword } = await import(
+    "utils/firebase.utils"
+  );
+  signInAuthWithEmailAndPassword(email, password);
+}

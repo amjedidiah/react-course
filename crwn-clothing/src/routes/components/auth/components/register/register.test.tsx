@@ -1,6 +1,5 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { emailRegisterPending } from "redux/slices/user.slice";
 import { renderWithProviders } from "setupTests";
 import Register from "./register";
 
@@ -22,14 +21,17 @@ describe("Register", () => {
     expect(screen.getByTestId("register-form")).toBeInTheDocument();
   });
 
-  it("should dispatch emailRegisterPending action on submit", async () => {
+  it("should call createAuthUserWithEmailAndPassword on submit", async () => {
     expect.assertions(2);
 
     const displayName = "John Doe";
     const email = "john.doe@gmail.com";
     const password = "Alpha1";
+    const { createAuthUserWithEmailAndPassword } = await import(
+      "utils/firebase.utils"
+    );
 
-    const { store } = renderWithProviders(<Register />);
+    renderWithProviders(<Register />);
 
     await userEvent.type(
       screen.getByRole("textbox", {
@@ -51,8 +53,9 @@ describe("Register", () => {
     await userEvent.click(screen.getByTestId("custom"));
 
     expect(screen).toMatchSnapshot();
-    expect(store.dispatch).toHaveBeenCalledWith(
-      emailRegisterPending({ displayName, email, password })
+    expect(createAuthUserWithEmailAndPassword).toHaveBeenCalledWith(
+      email,
+      password
     );
   });
 });

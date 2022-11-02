@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Register should dispatch emailRegisterPending action on submit 1`] = `
+exports[`Register should call createAuthUserWithEmailAndPassword on submit 1`] = `
 Object {
   "debug": [Function],
   "findAllByAltText": [Function],
