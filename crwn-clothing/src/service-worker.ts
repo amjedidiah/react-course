@@ -13,9 +13,9 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
-import navigationPreload from "workbox-navigation-preload"
-import routing from "workbox-routing"
-import strategies from "workbox-strategies"
+import * as navigationPreload from "workbox-navigation-preload"
+import * as routing from "workbox-routing"
+import * as strategies from "workbox-strategies"
 
 declare const self: ServiceWorkerGlobalScope;
 
