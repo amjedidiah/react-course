@@ -83,8 +83,7 @@ self.addEventListener('message', (event) => {
 // Any other custom service worker logic can go here.
 const CACHE = "pwabuilder-offline-page";
 
-const offlineFallbackPage = "index.html";
-
+const offlineFallbackPage = "fallback.html";
 
 self.addEventListener('install', async (event) => {
   event.waitUntil(
