@@ -3,6 +3,7 @@ import { AuthDetails, StateError, UserState } from "redux/redux.types";
 import { RootState } from "redux/store";
 import { UserData } from "utils/firebase.utils";
 
+// set as return type of the slice's initial state
 export const initialState = {
   currentUser: null,
   isLoading: false,

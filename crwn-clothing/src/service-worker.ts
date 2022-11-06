@@ -13,6 +13,9 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
+import navigationPreload from "workbox-navigation-preload"
+import routing from "workbox-routing"
+import strategies from "workbox-strategies"
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -78,3 +81,47 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+const CACHE = "pwabuilder-offline-page";
+
+const offlineFallbackPage = "index.html";
+
+
+self.addEventListener('install', async (event) => {
+  event.waitUntil(
+    caches.open(CACHE)
+      .then((cache) => cache.add(offlineFallbackPage))
+  );
+});
+
+if (navigationPreload.isSupported()) {
+  navigationPreload.enable();
+}
+
+routing.registerRoute(
+  new RegExp('/*'),
+  new strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith((async () => {
+      try {
+        const preloadResp = await event.preloadResponse;
+
+        if (preloadResp) {
+          return preloadResp;
+        }
+
+        const networkResp = await fetch(event.request);
+        return networkResp;
+      } catch (error) {
+
+        const cache = await caches.open(CACHE);
+        const cachedResp = await cache.match(offlineFallbackPage);
+        return cachedResp;
+      }
+    })());
+  }
+});
